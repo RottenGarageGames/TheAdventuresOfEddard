@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public KeyCode rotateLeft;
     public float jumpForce;
     public Physics myPhysics;
+    public int rotateSpeed;
+
 
     public bool goingLeft;
     public bool goingRight;
@@ -77,11 +79,11 @@ public class PlayerController : MonoBehaviour
         //Allows player to rotate themselves in the air
         if (Input.GetKey(rotateLeft) && !(isLeftWallWalking || isCeilingWalking || isGrounded || isRightWallWalking))
         {
-            _playerTransform.rotation = Quaternion.Euler(0, 0, currentRotation -= 5);
+            _playerTransform.rotation = Quaternion.Euler(0, 0, currentRotation -= rotateSpeed);
         }
         else if (Input.GetKey(rotateRight) && !(isLeftWallWalking || isCeilingWalking || isGrounded || isRightWallWalking))
         {
-            _playerTransform.rotation = Quaternion.Euler(0, 0, currentRotation += 5);
+            _playerTransform.rotation = Quaternion.Euler(0, 0, currentRotation += rotateSpeed);
         }
 
 

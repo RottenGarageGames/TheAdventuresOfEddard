@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Matttestscript : MonoBehaviour
+public class PlatformUp : MonoBehaviour
 {
     public float MovementSpeed;
     public float TransitionTime;
     public Rigidbody2D _platformRigidbody;
     public float _time;
-    public bool _isMovingRight;
-    
+    public bool _isMovingUp;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _platformRigidbody = gameObject.GetComponent<Rigidbody2D>();
-        _isMovingRight = false;
+        _isMovingUp = false;
     }
 
     // Update is called once per frame
@@ -26,23 +26,24 @@ public class Matttestscript : MonoBehaviour
         if (_time >= TransitionTime)
         {
             _time = 0;
-            _isMovingRight = !_isMovingRight;
+            _isMovingUp = !_isMovingUp;
             _platformRigidbody.velocity = Vector2.zero;
-                
+
         }
 
-            if (_isMovingRight)
-            {
-                _platformRigidbody.AddForce(Vector2.right * MovementSpeed);
-            }
-            else
-            {
-                _platformRigidbody.AddForce(Vector2.left * MovementSpeed);
-            }
+        if (_isMovingUp)
+        {
+            _platformRigidbody.AddForce(Vector2.up * MovementSpeed);
+        }
+        else
+        {
+            _platformRigidbody.AddForce(Vector2.down * MovementSpeed);
+        }
 
 
-        
+
 
 
     }
 }
+
