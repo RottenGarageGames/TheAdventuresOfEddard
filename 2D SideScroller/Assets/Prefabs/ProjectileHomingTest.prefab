@@ -105,9 +105,12 @@ MonoBehaviour:
   projectileSpeed: 20
   areaDamagePerSec: 0
   isHoming: 0
-  isBullet: 1
-  isShootAndStop: 0
+  isBullet: 0
+  shootAndStopAtPlayerPos: 0
+  isShootAndStop: 1
   hasAreaEffectDamage: 0
+  ShootAndStopTime: 2
+  ShootStopTimer: 0
 --- !u!50 &289416975256852814
 Rigidbody2D:
   serializedVersion: 4
