@@ -13,18 +13,17 @@ public class Attack : MonoBehaviour
     public CircleCollider2D areaOfEffect;
     public GameObject target;
 
-    
 
 
     //cooldown time has been reached
-    public bool readyForUse; 
-    
+    public bool readyForUse;
+
 
     void Update()
     {
         _timer += Time.deltaTime;
 
-        if(_timer >= coolDownTime)
+        if (_timer >= coolDownTime)
         {
             readyForUse = true;
         }
@@ -43,9 +42,10 @@ public class Attack : MonoBehaviour
     }
     public void RemoveTarget(GameObject targetToRemove)
     {
-        if(targetToRemove.tag == target.tag)
+        if (targetToRemove.tag == target.tag)
         {
             target = null;
         }
     }
+
 }

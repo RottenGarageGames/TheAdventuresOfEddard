@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2126775485883656140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.8662877, y: -11.368479, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -102,15 +102,17 @@ MonoBehaviour:
   target: {fileID: 0}
   readyForUse: 0
   numberOfProjectiles: 1
-  projectileSpeed: 20
+  projectileSpeed: 0.25
   areaDamagePerSec: 0
-  isHoming: 0
+  isHoming: 1
   isBullet: 0
   shootAndStopAtPlayerPos: 0
-  isShootAndStop: 1
+  isShootAndStop: 0
   hasAreaEffectDamage: 0
   ShootAndStopTime: 2
   ShootStopTimer: 0
+  DestroyAfterSeconds: 5
+  hasDestroyAttackAfterTime: 1
 --- !u!50 &289416975256852814
 Rigidbody2D:
   serializedVersion: 4

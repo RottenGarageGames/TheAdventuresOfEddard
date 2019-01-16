@@ -295,6 +295,36 @@ CapsuleCollider2D:
   m_Offset: {x: 4.6739445, y: -4.2640367}
   m_Size: {x: 0.7654723, y: 2.7662337}
   m_Direction: 0
+--- !u!1 &2250775656384896412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6376999212982253443}
+  m_Layer: 0
+  m_Name: ProjectileSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6376999212982253443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250775656384896412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.47, y: 1.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3093025851679014655}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2254660777417851428
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,10 +430,11 @@ Transform:
   m_GameObject: {fileID: 3093025851679014648}
   m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
   m_LocalPosition: {x: 54.14, y: -14.85, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 0}
   m_Children:
   - {fileID: 4901583702290540101}
   - {fileID: 2025371471467066566}
+  - {fileID: 6376999212982253443}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
@@ -509,10 +540,10 @@ MonoBehaviour:
   isClosestDistanceToPlayer: 0
   enemyClosestPositionToPlayer: 15
   jumpForce: 25
-  enemyShouldJumpNearPlayer: 0
+  enemyShouldJumpNearPlayer: 1
   player: {fileID: 0}
   movementSpeed: 10.3
-  timeBetweenJumps: 0
+  timeBetweenJumps: 2.55
 --- !u!114 &1472911889300782953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,7 +556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244308eabb852e54692fda2c3a48fd18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackList: []
+  attackList:
+  - {fileID: 2126775485883656140, guid: ce84810b062644741b8d088ccc43697c, type: 3}
   target: {fileID: 0}
   spawnPoint: {fileID: 0}
   currentAttack: {fileID: 0}
@@ -543,7 +575,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   level: 10
-  inRange: 0
   enemyHealthBar: {fileID: 327389308987405404}
   hasBossHealthBar: 1
   bloodEffect: {fileID: 7628942950730844439, guid: 7457911c79f9d9443915831110887e04,
