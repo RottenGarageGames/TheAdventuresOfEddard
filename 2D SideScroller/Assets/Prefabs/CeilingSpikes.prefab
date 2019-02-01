@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeed: 5
-  damageAmount: 0
+  damageAmount: 1
   startCollider: Ceiling
 --- !u!61 &4276526451189549214
 BoxCollider2D:

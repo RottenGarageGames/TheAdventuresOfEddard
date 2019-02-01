@@ -85,4 +85,12 @@ public class ProjectileAttack : Attack
             Destroy(gameObject, DestroyAfterSeconds);
         }
     }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == target.gameObject.tag)
+        {
+            target.SendMessage("TakeDamage", damage);
+            Destroy(gameObject);
+        }
+    }
 }

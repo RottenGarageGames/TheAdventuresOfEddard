@@ -33,6 +33,11 @@ public class StalactiteMovement : MonoBehaviour
         //other.SendMessage("TakeDamage", damageAmount);
         if (other.gameObject.tag != startCollider)
         {
+            if(other.gameObject.tag == "Player")
+            {
+                other.gameObject.SendMessage("TakeDamage", damageAmount);
+            }
+            AudioManager.instance.Play("CaveSpikes");
             Destroy(gameObject);
         }
 
