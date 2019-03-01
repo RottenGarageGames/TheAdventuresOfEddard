@@ -10,12 +10,14 @@ public class PlayerAttack : MonoBehaviour
     public float shotTimer;
     public float attackDuration;
     public KeyCode keyCode;
+    public Animator Animator;
 
     // Start is called before the first frame update
     void Start()
     {
         // Set the ability to be cooled down
         shotTimer = timeBetweenShots;
+        Animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKey(keyCode) && shotTimer > timeBetweenShots)
         {
-           
+            Animator.SetBool("isAttacking", true);
            var newProjectile = Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
             
             if (transform.localScale.x < 0)
@@ -37,8 +39,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 newProjectile.SendMessage("NotFacingRight");
             }
-            shotTimer = 0;
-          
+            shotTimer = 0; 
         }
     }
 }

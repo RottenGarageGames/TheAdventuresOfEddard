@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform GroundCheck;
     public LayerMask ground;
     public float checkRadius;
+    public Animator Animator;
 
     private Vector2 _gravity;
 
@@ -18,11 +19,22 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _gravity = new Vector2(0, -1100 * Time.fixedDeltaTime * GravityPull);
+        Animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(Input.GetButtonDown("Horizontal"))
+        {
+            Animator.SetBool("isWalking", true);
+            Animator.SetBool("isJumping", false);
+        }
+        if(Input.GetButtonDown("Jump"))
+        {
+            Animator.SetBool("isJumping", true);
+            Animator.SetBool("isWalking", false);
+        }
         var horizontal = Input.GetAxisRaw("Horizontal");
         var jump = Input.GetAxisRaw("Jump");
 
