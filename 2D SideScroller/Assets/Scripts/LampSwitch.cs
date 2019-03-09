@@ -9,10 +9,15 @@ public class LampSwitch : MonoBehaviour
     public Sprite unlitSprite;
     public Sprite litSprite;
 
+
+    private Color lampColor;
+
     void Start()
     {
+
        lampSprite = gameObject.GetComponent<SpriteRenderer>();
-        // lampSprite.color = Random.ColorHSV(0.7f, .8f);
+       //lampSprite.color = Random.ColorHSV(0.7f, .8f);
+       //lampColor = lampSprite.color;
     }
     // Update is called once per frame
     void Update()
@@ -24,6 +29,7 @@ public class LampSwitch : MonoBehaviour
         if (other.tag == "Player")
         {
             lampSprite.sprite = litSprite;
+
         }
     }
     void OnTriggerExit2D(Collider2D other)

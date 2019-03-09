@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode up;
     public KeyCode rotateRight;
     public KeyCode rotateLeft;
+    public KeyCode action;
     public float jumpForce;
     public Physics myPhysics;
     public int rotateSpeed;
