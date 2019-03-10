@@ -11,6 +11,7 @@ TagManager:
   - BossHealthMeter
   - Enemy
   - EnemyHitBox
+  - LightSpawn
   layers:
   - Default
   - TransparentFX
