@@ -12,7 +12,7 @@ public class LampSwitch : MonoBehaviour
     void Start()
     {
        lampSprite = gameObject.GetComponent<SpriteRenderer>();
-        // lampSprite.color = Random.ColorHSV(0.7f, .8f);
+         lampSprite.color = Random.ColorHSV(0.7f, .8f);
     }
     // Update is called once per frame
     void Update()
