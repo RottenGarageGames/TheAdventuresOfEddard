@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Photon.MonoBehaviour
 {
     private Rigidbody2D _myRB;
     private Transform _playerTransform;
+    public PhotonView photonView;
 
     public float speed = 50;
 
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour
         _myRB = GetComponent<Rigidbody2D>();
         playerCurrentFlipValue = transform.rotation.y;
         _playerTransform = gameObject.GetComponent<Transform>();
+        photonView = gameObject.GetPhotonView();
+        mainCamera = GameObject.FindObjectOfType<Camera>();
     }
 
     // Update is called once per frame
@@ -76,171 +79,173 @@ public class PlayerController : MonoBehaviour
         timer += Time.deltaTime;
 
 
-
-        //Allows player to rotate themselves in the air
-        if (Input.GetKey(rotateLeft) && !(isLeftWallWalking || isCeilingWalking || isGrounded || isRightWallWalking))
+        if (photonView.isMine)
         {
-            _playerTransform.rotation = Quaternion.Euler(0, 0, currentRotation -= rotateSpeed);
-        }
-        else if (Input.GetKey(rotateRight) && !(isLeftWallWalking || isCeilingWalking || isGrounded || isRightWallWalking))
-        {
-            _playerTransform.rotation = Quaternion.Euler(0, 0, currentRotation += rotateSpeed);
-        }
-
-
-        //Helps with player camera rotation
-        if (isRightWallWalking || isLeftWallWalking || isCeilingWalking || isGrounded)
-        {
-            mainCamera.SendMessage("SetGrounded");
-        }
-        else if (!(isRightWallWalking || isLeftWallWalking || isCeilingWalking || isGrounded))
-        {
-            mainCamera.SendMessage("NotGrounded");
-        }
-
-        if (timer > waitTime)
-        {
-            if (isRightWallWalking && !(isLeftWallWalking || isCeilingWalking || isGrounded))
+            //Allows player to rotate themselves in the air
+            if (Input.GetKey(rotateLeft) && !(isLeftWallWalking || isCeilingWalking || isGrounded || isRightWallWalking))
             {
-                Debug.Log("changing gravity Right Wall");
+                _playerTransform.rotation = Quaternion.Euler(0, 0, currentRotation -= rotateSpeed);
+            }
+            else if (Input.GetKey(rotateRight) && !(isLeftWallWalking || isCeilingWalking || isGrounded || isRightWallWalking))
+            {
+                _playerTransform.rotation = Quaternion.Euler(0, 0, currentRotation += rotateSpeed);
+            }
 
-                Physics2D.gravity = new Vector2(-9.91F, 0);
 
-                _playerTransform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, -90f);
-                leftMovement = new Vector2(0, speed);
-                rightMovement = new Vector2(0, -speed);
-                jumpMovement = new Vector2(jumpForce, 0);
-                jumpLeft = new Vector2(jumpForce, speed);
-                jumpRight = new Vector2(jumpForce, -speed);
+            ////Helps with player camera rotation
+            //if (isRightWallWalking || isLeftWallWalking || isCeilingWalking || isGrounded)
+            //{
+            //    mainCamera.SendMessage("SetGrounded");
+            //}
+            //else if (!(isRightWallWalking || isLeftWallWalking || isCeilingWalking || isGrounded))
+            //{
+            //    mainCamera.SendMessage("NotGrounded");
+            //}
 
-                newLayerMask = rightWallCheckLayer;
-                if (currentLayerMask != newLayerMask)
+            if (timer > waitTime)
+            {
+                if (isRightWallWalking && !(isLeftWallWalking || isCeilingWalking || isGrounded))
                 {
-                    currentLayerMask = rightWallCheckLayer;
-                    timer = 0.0f;
+                    Debug.Log("changing gravity Right Wall");
+
+                    Physics2D.gravity = new Vector2(-9.91F, 0);
+
+                    _playerTransform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, -90f);
+                    leftMovement = new Vector2(0, speed);
+                    rightMovement = new Vector2(0, -speed);
+                    jumpMovement = new Vector2(jumpForce, 0);
+                    jumpLeft = new Vector2(jumpForce, speed);
+                    jumpRight = new Vector2(jumpForce, -speed);
+
+                    newLayerMask = rightWallCheckLayer;
+                    if (currentLayerMask != newLayerMask)
+                    {
+                        currentLayerMask = rightWallCheckLayer;
+                        timer = 0.0f;
+                    }
+
+                }
+                else if (isLeftWallWalking && !(isRightWallWalking || isCeilingWalking || isGrounded))
+                {
+                    Debug.Log("changing gravity Left Wall");
+                    Physics2D.gravity = new Vector2(9.91F, 0);
+
+                    _playerTransform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 90f);
+                    leftMovement = new Vector2(0, -speed);
+                    rightMovement = new Vector2(0, speed);
+                    jumpMovement = new Vector2(-jumpForce, 0);
+                    jumpLeft = new Vector2(-jumpForce, -speed);
+                    jumpRight = new Vector2(-jumpForce, speed);
+
+                    newLayerMask = leftWallCheckLayer;
+                    if (currentLayerMask != newLayerMask)
+                    {
+                        currentLayerMask = leftWallCheckLayer;
+                        timer = 0.0f;
+                    }
+                }
+                else if (isCeilingWalking && !(isRightWallWalking || isLeftWallWalking || isGrounded))
+                {
+                    Debug.Log("changing gravity ceiling");
+                    Physics2D.gravity = new Vector2(0, 9.91F);
+
+                    _playerTransform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 180f);
+                    leftMovement = new Vector2(speed, 0);
+                    rightMovement = new Vector2(-speed, 0);
+                    jumpMovement = new Vector2(0, -jumpForce);
+                    jumpLeft = new Vector2(speed, -jumpForce);
+                    jumpRight = new Vector2(-speed, -jumpForce);
+
+                    newLayerMask = ceilingCheckLayer;
+                    if (currentLayerMask != newLayerMask)
+                    {
+                        currentLayerMask = ceilingCheckLayer;
+                        timer = 0.0f;
+                    }
+                }
+                else if (isGrounded && !(isRightWallWalking || isCeilingWalking || isLeftWallWalking))
+                {
+                    Debug.Log("changing gravity ground");
+                    Physics2D.gravity = new Vector2(0, -9.81f);
+                    _playerTransform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+                    leftMovement = new Vector2(-speed, 0);
+                    rightMovement = new Vector2(speed, 0);
+                    jumpMovement = new Vector2(0, jumpForce);
+                    jumpLeft = new Vector2(-speed, jumpForce);
+                    jumpRight = new Vector2(speed, jumpForce);
+
+                    newLayerMask = ground;
+
+                    if (currentLayerMask != newLayerMask)
+                    {
+                        currentLayerMask = ground;
+                        timer = 0.0f;
+                    }
                 }
 
-            }
-            else if (isLeftWallWalking && !(isRightWallWalking || isCeilingWalking || isGrounded))
-            {
-                Debug.Log("changing gravity Left Wall");
-                Physics2D.gravity = new Vector2(9.91F, 0);
 
-                _playerTransform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 90f);
-                leftMovement = new Vector2(0, -speed);
-                rightMovement = new Vector2(0, speed);
-                jumpMovement = new Vector2(-jumpForce, 0);
-                jumpLeft = new Vector2(-jumpForce, -speed);
-                jumpRight = new Vector2(-jumpForce, speed);
-
-                newLayerMask = leftWallCheckLayer;
-                if (currentLayerMask != newLayerMask)
+                //Grounded Controls
+                if (Input.GetKey(left) && (isGrounded || isRightWallWalking || isLeftWallWalking || isCeilingWalking))
                 {
-                    currentLayerMask = leftWallCheckLayer;
-                    timer = 0.0f;
+                    goingRight = false;
+                    if (!goingLeft || transform.localScale.x != 1)
+                    {
+                        FlipPlayerSprite();
+                        goingLeft = true;
+                    }
+                    _myRB.velocity = leftMovement;
+
+                    if (!goingLeft)
+                    {
+                        goingLeft = true;
+                        FlipPlayerSprite();
+                    }
+
+                    _myRB.velocity = leftMovement;
                 }
-            }
-            else if (isCeilingWalking && !(isRightWallWalking || isLeftWallWalking || isGrounded))
-            {
-                Debug.Log("changing gravity ceiling");
-                Physics2D.gravity = new Vector2(0, 9.91F);
-
-                _playerTransform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 180f);
-                leftMovement = new Vector2(speed, 0);
-                rightMovement = new Vector2(-speed, 0);
-                jumpMovement = new Vector2(0, -jumpForce);
-                jumpLeft = new Vector2(speed, -jumpForce);
-                jumpRight = new Vector2(-speed, -jumpForce);
-
-                newLayerMask = ceilingCheckLayer;
-                if (currentLayerMask != newLayerMask)
+                else if (Input.GetKey(right) && (isGrounded || isRightWallWalking || isLeftWallWalking || isCeilingWalking))
                 {
-                    currentLayerMask = ceilingCheckLayer;
-                    timer = 0.0f;
+                    goingLeft = false;
+
+                    if (!goingRight || transform.localScale.x != -1)
+                    {
+
+                        FlipPlayerSprite();
+                        goingRight = true;
+
+                    }
+
+                    _myRB.velocity = rightMovement;
+
+
+                    goingRight = true;
+
+
+                    _myRB.velocity = rightMovement;
                 }
-            }
-            else if (isGrounded && !(isRightWallWalking || isCeilingWalking || isLeftWallWalking))
-            {
-                Debug.Log("changing gravity ground");
-                Physics2D.gravity = new Vector2(0, -9.81f);
-                _playerTransform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-                leftMovement = new Vector2(-speed, 0);
-                rightMovement = new Vector2(speed, 0);
-                jumpMovement = new Vector2(0, jumpForce);
-                jumpLeft = new Vector2(-speed, jumpForce);
-                jumpRight = new Vector2(speed, jumpForce);
 
-                newLayerMask = ground;
-
-                if (currentLayerMask != newLayerMask)
+                if (Input.GetKey(up) && (isGrounded || isRightWallWalking || isLeftWallWalking || isCeilingWalking))
                 {
-                    currentLayerMask = ground;
-                    timer = 0.0f;
+                    if (goingLeft)
+                    {
+                        goingUp = true;
+                        _myRB.velocity = jumpLeft;
+                    }
+                    else if (goingRight)
+                    {
+                        goingUp = true;
+                        _myRB.velocity = jumpRight;
+                    }
+                    else
+                    {
+                        goingUp = true;
+
+                        _myRB.velocity = jumpMovement;
+                    }
                 }
             }
         }
-
-        //Grounded Controls
-        if (Input.GetKey(left) && (isGrounded || isRightWallWalking || isLeftWallWalking || isCeilingWalking))
-        {
-            goingRight = false;
-            if (!goingLeft || transform.localScale.x != 1)
-            {
-                FlipPlayerSprite();
-                goingLeft = true;
-            }
-            _myRB.velocity = leftMovement;
-
-            if (!goingLeft)
-            {
-                goingLeft = true;
-                FlipPlayerSprite();
-            }
-
-            _myRB.velocity = leftMovement;
-        }
-        else if (Input.GetKey(right) && (isGrounded || isRightWallWalking || isLeftWallWalking || isCeilingWalking))
-        {
-            goingLeft = false;
-
-            if (!goingRight || transform.localScale.x != -1)
-            {
-
-                FlipPlayerSprite();
-                goingRight = true;
-
-            }
-
-            _myRB.velocity = rightMovement;
-
-            
-            goingRight = true;
-        
-
-        _myRB.velocity = rightMovement;
     }
-
-            if (Input.GetKey(up) && (isGrounded || isRightWallWalking || isLeftWallWalking || isCeilingWalking))
-            {
-                if (goingLeft)
-                {
-                    goingUp = true;
-                    _myRB.velocity = jumpLeft;
-                }
-                else if (goingRight)
-                {
-                    goingUp = true;
-                    _myRB.velocity = jumpRight;
-                }
-                else
-                {
-                    goingUp = true;
-
-                    _myRB.velocity = jumpMovement;
-                }
-            }
-        }
-
 
         void FlipPlayerSprite()
         {
@@ -252,6 +257,18 @@ public class PlayerController : MonoBehaviour
             newScale.x *= -1;
             transform.localScale = newScale;
         }
+    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.isWriting)
+        {
+            stream.SendNext(transform.position);
+
+        }
+        else
+        {
+            gameObject.transform.position = (Vector3)stream.ReceiveNext();
+        }
+    }
     }
 
 
