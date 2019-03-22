@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576119e12a1e7414cab870d8e71a0aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  predictionCoeff: 0.111
+  predictionCoeff: 1
   isAuthoritative: 0
 --- !u!1 &1756321942
 GameObject:
