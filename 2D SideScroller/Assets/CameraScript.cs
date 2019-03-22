@@ -1,19 +1,26 @@
-﻿using System.Collections;
+﻿using ExitGames.Demos.DemoAnimator;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public Transform target;
-    public float smoothTime = 1.25f;
-    public Vector3 offset;
+    public PhotonView photonView;
 
-    void FixedUpdate()
+    void Start()
     {
-        Vector3 desiredPosition = target.position + offset;
-        Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, smoothTime);
-        transform.position = smoothPosition;
-
-        transform.LookAt(target);
+        photonView = gameObject.GetPhotonView();
+        CameraWork _cameraWork = this.gameObject.GetComponent<CameraWork>();
+        if(_cameraWork != null)
+        {
+            if(photonView.isMine)
+            {
+                _cameraWork.OnStartFollowing();
+            }
+        }
+        else
+        {
+            Debug.LogError("Missing Camera Component");
+        }
     }
 }

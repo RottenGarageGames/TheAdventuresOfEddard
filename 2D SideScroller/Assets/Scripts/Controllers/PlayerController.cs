@@ -60,7 +60,6 @@ public class PlayerController : Photon.MonoBehaviour
         photonView = gameObject.GetPhotonView();
         mainCamera = GameObject.FindObjectOfType<Camera>();
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -262,11 +261,12 @@ public class PlayerController : Photon.MonoBehaviour
         if(stream.isWriting)
         {
             stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
 
         }
         else
         {
-            gameObject.transform.position = (Vector3)stream.ReceiveNext();
+
         }
     }
     }

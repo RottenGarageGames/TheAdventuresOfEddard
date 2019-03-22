@@ -9,12 +9,6 @@ namespace UnityInterfaces
         public interface IInventoryItem
         {
             String name { get; set; }
-        }
-        public class Item : IInventoryItem
-        {
-            public String name { get; set; }
-            public Item()
-            {
-            }
+            int itemID { get; set; }
         }
 }
