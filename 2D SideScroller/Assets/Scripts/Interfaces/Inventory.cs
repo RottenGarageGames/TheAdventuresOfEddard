@@ -6,14 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityInterfaces;
+using Items;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField]
-    private List<IInventoryItem> _inventory;
+    public List<IInventoryItem> _inventory;
 
-    public Inventory()
+    public Inventory(List<Item> items)
     {
+        _inventory = items.Where(x => x is IInventoryItem).Select(x => x as IInventoryItem).ToList();
         _inventory = new List<IInventoryItem>();
     }
     public List<IEquipable> GetEquipableItems()
