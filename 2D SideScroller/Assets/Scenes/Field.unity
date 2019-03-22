@@ -6786,6 +6786,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1509009565}
+    - target: {fileID: 193524340154980385, guid: 531727663c5490744971484772e766cf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 531727663c5490744971484772e766cf, type: 3}
 --- !u!1001 &4922670810381131778
@@ -6800,6 +6805,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManagers
       objectReference: {fileID: 0}
+    - target: {fileID: 4922670809710987423, guid: 8aaeca54cc2879d429c42a8140a81c82,
+        type: 3}
+      propertyPath: createRoomInput
+      value: 
+      objectReference: {fileID: 1668225974}
+    - target: {fileID: 4922670809710987423, guid: 8aaeca54cc2879d429c42a8140a81c82,
+        type: 3}
+      propertyPath: joinRoomInput
+      value: 
+      objectReference: {fileID: 1314867581}
+    - target: {fileID: 4922670809710987423, guid: 8aaeca54cc2879d429c42a8140a81c82,
+        type: 3}
+      propertyPath: NetworkingUI
+      value: 
+      objectReference: {fileID: 495844226}
+    - target: {fileID: 4922670809710987423, guid: 8aaeca54cc2879d429c42a8140a81c82,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 436751341}
     - target: {fileID: 4922670811024788195, guid: 8aaeca54cc2879d429c42a8140a81c82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6855,26 +6880,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4922670809710987423, guid: 8aaeca54cc2879d429c42a8140a81c82,
-        type: 3}
-      propertyPath: createRoomInput
-      value: 
-      objectReference: {fileID: 1668225974}
-    - target: {fileID: 4922670809710987423, guid: 8aaeca54cc2879d429c42a8140a81c82,
-        type: 3}
-      propertyPath: joinRoomInput
-      value: 
-      objectReference: {fileID: 1314867581}
-    - target: {fileID: 4922670809710987423, guid: 8aaeca54cc2879d429c42a8140a81c82,
-        type: 3}
-      propertyPath: NetworkingUI
-      value: 
-      objectReference: {fileID: 495844226}
-    - target: {fileID: 4922670809710987423, guid: 8aaeca54cc2879d429c42a8140a81c82,
-        type: 3}
-      propertyPath: spawnPoint
-      value: 
-      objectReference: {fileID: 436751341}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8aaeca54cc2879d429c42a8140a81c82, type: 3}
 --- !u!1001 &7013574174318634605
