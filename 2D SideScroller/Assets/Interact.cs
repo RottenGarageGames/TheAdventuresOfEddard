@@ -9,7 +9,9 @@ public class Interact : MonoBehaviour
     {
         if(collider.gameObject.GetComponent<IInteractable>() != null && Input.GetButtonDown("Interact"))
         {
-           
+            Debug.Log("Interacting!");
+            var interactableObject = collider.gameObject.GetComponent<IInteractable>();
+            interactableObject.Interact(gameObject);
         }
     }
 }

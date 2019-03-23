@@ -7,6 +7,6 @@ namespace UnityInterfaces
     public interface IInteractable
     {
         float interactRadius { get; set; }
-        void Interact();
+        void Interact(GameObject gameObject);
     }
 }
