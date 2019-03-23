@@ -8,6 +8,7 @@ public class PlayerController : Photon.MonoBehaviour
     private Rigidbody2D _myRB;
     private Transform _playerTransform;
     public PhotonView photonView;
+    public bool isLocal;
 
     public float speed = 50;
 
@@ -78,7 +79,7 @@ public class PlayerController : Photon.MonoBehaviour
         timer += Time.deltaTime;
 
 
-        if (photonView.isMine)
+        if (photonView.isMine || isLocal)
         {
             //Allows player to rotate themselves in the air
             if (Input.GetKey(rotateLeft) && !(isLeftWallWalking || isCeilingWalking || isGrounded || isRightWallWalking))

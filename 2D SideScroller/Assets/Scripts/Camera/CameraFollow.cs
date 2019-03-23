@@ -27,7 +27,7 @@ public class CameraFollow : MonoBehaviour
     //}
     void Awake()
     {
-        target = GetComponentInParent<Transform>();
+        
     }
     // Update is called once per framed
     void Update()
