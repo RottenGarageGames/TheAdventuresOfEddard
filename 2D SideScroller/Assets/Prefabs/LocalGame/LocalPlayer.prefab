@@ -75,11 +75,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1678009151, guid: 7e946edcd94227942999f9ac640e6a57, type: 3}
       propertyPath: viewIdField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1678009151, guid: 7e946edcd94227942999f9ac640e6a57, type: 3}
       propertyPath: instantiationId
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 27988069, guid: 7e946edcd94227942999f9ac640e6a57, type: 3}
       propertyPath: m_LocalPosition.z
