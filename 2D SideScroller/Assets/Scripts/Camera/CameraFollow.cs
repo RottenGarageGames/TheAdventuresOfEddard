@@ -25,6 +25,10 @@ public class CameraFollow : MonoBehaviour
     //{
     //    currentRotation = gameObject.transform.eulerAngles.z;
     //}
+    void Awake()
+    {
+        target = GetComponentInParent<Transform>();
+    }
     // Update is called once per framed
     void Update()
     {
