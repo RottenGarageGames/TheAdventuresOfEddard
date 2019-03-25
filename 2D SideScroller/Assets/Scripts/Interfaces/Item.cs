@@ -10,24 +10,34 @@ namespace Items
     public class Item : MonoBehaviour, IInventoryItem, IInteractable
     {
         private CircleCollider2D _circleCollider2D;
-
         public UnityEvent equipItem;
+        
+
         [SerializeField]
-        private String _name;
-        public String name { get { return _name; } set { _name = value; _name = value; } }
+        private String _itemName;
+        public String itemName { get; set; }
 
         [SerializeField]
         private int _itemID;
-        public int itemID { get { return _itemID; } set { _itemID = value; itemID = value; } }
+        public int itemID { get; set; }
 
         [SerializeField]
         private float _interactRadius;
-        public float interactRadius { get { return _interactRadius; } set { _interactRadius = value; interactRadius = value; } }
+        public float interactRadius { get; set; }
+
+        [SerializeField]
+        public Sprite sprite { get; set; }
+
         void Awake()
         {
+            itemName = _itemName;
+            itemID = _itemID;
+            interactRadius = _interactRadius;
+
             _circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
             _circleCollider2D.radius = _interactRadius;
-        }
+            sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+           }
         public Item()
         {
             

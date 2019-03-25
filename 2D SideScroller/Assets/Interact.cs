@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityInterfaces;
+using Items;
 
 public class Interact : MonoBehaviour
 {
@@ -9,9 +10,14 @@ public class Interact : MonoBehaviour
     {
         if(collider.gameObject.GetComponent<IInteractable>() != null && Input.GetButtonDown("Interact"))
         {
-            Debug.Log("Interacting!");
             var interactableObject = collider.gameObject.GetComponent<IInteractable>();
             interactableObject.Interact(gameObject);
+
+            if(collider.gameObject.GetComponent<IInventoryItem>() != null)
+            {
+                gameObject.GetComponent<PlayerInventory>().AddItem(collider.gameObject);
+                collider.gameObject.SetActive(false);
+            }
         }
     }
 }

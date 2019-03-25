@@ -8,8 +8,10 @@ namespace UnityInterfaces
         // Start is called before the first frame update
         public interface IInventoryItem
         {
-            String name { get; set; }
+            String itemName { get; set; }
             int itemID { get; set; }
+            Sprite sprite { get; set; }
+
         }
         
         

@@ -10,33 +10,33 @@ using Items;
 
 public class Inventory : MonoBehaviour
 {
-    public List<IInventoryItem> _inventory;
+    //public List<IInventoryItem> _inventory;
 
-    public Inventory(List<Item> items)
+    public Inventory()
     {
-        _inventory = items.Where(x => x is IInventoryItem).Select(x => x as IInventoryItem).ToList();
-        _inventory = new List<IInventoryItem>();
+        //_inventory = items.Where(x => x is IInventoryItem).Select(x => x as IInventoryItem).ToList();
+        //_inventory = new List<IInventoryItem>();
     }
-    public List<IEquipable> GetEquipableItems()
+    public List<IEquipable> GetEquipableItems(List<Item> items)
     {
-        return _inventory.Where(x => x is IEquipable).Select(x => x as IEquipable).ToList();
+        return items.Where(x => x is IEquipable).Select(x => x as IEquipable).ToList();
     }
-    public List<IWeapon> GetWeaponItems()
+    public List<IWeapon> GetWeaponItems(List<Item> items)
     {
-        return _inventory.Where(x => x is IWeapon).Select(x => x as IWeapon).ToList();
+        return items.Where(x => x is IWeapon).Select(x => x as IWeapon).ToList();
     }
-    public List<IConsumable> GetConsumableItems()
+    public List<IConsumable> GetConsumableItems(List<Item> items)
     {
-        return _inventory.Where(x => x is IConsumable).Select(x => x as IConsumable).ToList();
+        return items.Where(x => x is IConsumable).Select(x => x as IConsumable).ToList();
     }
-    public void AddItemToInventory(IInventoryItem inventoryItem)
-    {
-        _inventory.Add(inventoryItem);
-    }
-    public void RemoveInventoryItem(IInventoryItem inventoryItem)
-    {
-        _inventory.Remove(inventoryItem);
-    }
+    //public void AddItemToInventory(IInventoryItem inventoryItem)
+    //{
+    //    _inventory.Add(inventoryItem);
+    //}
+    //public void RemoveInventoryItem(IInventoryItem inventoryItem)
+    //{
+    //    _inventory.Remove(inventoryItem);
+    //}
 }
 
 

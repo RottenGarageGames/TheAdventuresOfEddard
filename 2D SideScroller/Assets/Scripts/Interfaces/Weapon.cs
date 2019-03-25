@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityInterfaces;
 using System;
+using Items;
 
-public class Weapon : IInventoryItem, IWeapon, IEquipable
+public class Weapon : Item, IWeapon, IEquipable
 {
-    public String name { get; set; }
     public int damage { get; set; }
-    public int itemID { get; set; }
 
     public Weapon()
     {
