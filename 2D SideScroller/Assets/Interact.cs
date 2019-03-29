@@ -8,15 +8,26 @@ public class Interact : MonoBehaviour
 {
     void OnTriggerStay2D(Collider2D collider)
     {
-        if(collider.gameObject.GetComponent<IInteractable>() != null && Input.GetButtonDown("Interact"))
+        var interactable = collider.gameObject;
+        if(interactable.GetComponent<IInteractable>() != null && Input.GetButtonDown("Interact") && interactable.activeInHierarchy)
         {
-            var interactableObject = collider.gameObject.GetComponent<IInteractable>();
+            //Call the default interact function
+            var interactableObject = interactable.GetComponent<IInteractable>();
             interactableObject.Interact(gameObject);
 
-            if(collider.gameObject.GetComponent<IInventoryItem>() != null)
+            //If the interactable is an inventory item, pick up the object
+            if(interactable.GetComponent<IInventoryItem>() != null)
             {
-                gameObject.GetComponent<PlayerInventory>().AddItem(collider.gameObject);
-                collider.gameObject.SetActive(false);
+
+                // Take the object out of scene
+                interactable.SetActive(false);
+
+                // Add the item to player inventory if the interacting component has an inventory component
+                if (gameObject.GetComponent<PlayerInventory>() != null)
+                {
+                    gameObject.GetComponent<PlayerInventory>().AddItem(collider.gameObject);
+                }
+
             }
         }
     }

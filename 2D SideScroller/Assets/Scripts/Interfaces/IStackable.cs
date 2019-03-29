@@ -6,7 +6,10 @@ namespace UnityInterfaces
 {
     public interface IStackable
     {
-        int stackSize { get; set; }
-        int maxStackSize { get; set; }
+        int StackSize { get; set; }
+        int MaxStackSize { get; set; }
+
+        void DecreaseCount(int amount);
+        void IncreaseCount(int amount);
     }
 }
