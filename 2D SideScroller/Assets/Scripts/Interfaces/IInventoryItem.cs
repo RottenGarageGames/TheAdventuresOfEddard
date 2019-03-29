@@ -11,7 +11,6 @@ namespace UnityInterfaces
             String itemName { get; set; }
             int itemID { get; set; }
             Sprite sprite { get; set; }
-
         }
         
         

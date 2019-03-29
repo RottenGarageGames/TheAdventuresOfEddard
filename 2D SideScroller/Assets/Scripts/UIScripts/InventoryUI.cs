@@ -14,8 +14,12 @@ public class InventoryUI : MonoBehaviour
         {
             if (item.GetComponent<Image>().sprite == null)
             {
-                Debug.Log("Checking");
-                item.GetComponent<Image>().sprite = itemSprite;
+                var currentSlot = item.GetComponent<Image>();
+                var tempColor = currentSlot.color;
+                tempColor.a = 1f;
+                currentSlot.sprite = itemSprite;
+                currentSlot.color = tempColor;
+
                 if (count > 0)
                 {
                     item.GetComponentInChildren<Text>().text = count.ToString();
