@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
 public class DialogueManager : MonoBehaviour
 {
-    public Text TitleText;
-    public Text DialogueText;
+    public TextMeshProUGUI TitleText;
+    public TextMeshProUGUI DialogueText;
+
+    public Animator Animator;
 
     private Queue<string> _sentences = new Queue<string>();
 
@@ -18,6 +21,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialog(Dialogue dialogue)
     {
+        Animator.SetBool("IsOpen", true);
+
         TitleText.text = dialogue.Name;
 
         _sentences.Clear();
@@ -45,6 +50,6 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        Debug.Log("End of Convo bro");
+        Animator.SetBool("IsOpen", false);
     }
 }
