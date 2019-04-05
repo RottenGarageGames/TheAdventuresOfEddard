@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 3290044165308221638}
   - component: {fileID: 3290044165308221639}
   - component: {fileID: 3290044165308221636}
+  - component: {fileID: 1178067008}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -115,8 +116,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000005722, y: 0.000012159}
-  m_SizeDelta: {x: 38.9, y: 42.7}
+  m_AnchoredPosition: {x: 1.23, y: -0.25}
+  m_SizeDelta: {x: 33.29, y: 34.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3290044165308221638
 CanvasRenderer:
@@ -147,8 +148,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -194,9 +195,36 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3290044165308221639}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1178067008}
+        m_MethodName: UseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1178067008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290044165308221634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc86e3e68ee7494184415279ee81772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemID: 0
+  maxStack: 0
+  currentStack: 0
+  inventoryUI: {fileID: 0}
 --- !u!1 &3290044166148984564
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +250,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3290044166148984564}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

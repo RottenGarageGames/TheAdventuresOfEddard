@@ -14,10 +14,15 @@ public class StackableItem : Item, IStackable
     private int _MaxStackSize;
     public int MaxStackSize { get; set; }
 
+    [SerializeField]
+    private int _AddSize;
+    public int AddSize { get; set; }
+
     void Awake()
     {
         StackSize = _StackSize;
         MaxStackSize = _MaxStackSize;
+        AddSize = _AddSize;
     }
 
     public void DecreaseCount(int amount)
