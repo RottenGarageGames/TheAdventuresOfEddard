@@ -8,6 +8,7 @@ namespace UnityInterfaces
     {
         int StackSize { get; set; }
         int MaxStackSize { get; set; }
+        int AddSize { get; set; }
 
         void DecreaseCount(int amount);
         void IncreaseCount(int amount);
