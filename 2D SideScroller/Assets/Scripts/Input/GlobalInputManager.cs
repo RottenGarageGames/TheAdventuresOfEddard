@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Misc;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobalInputManager : MonoBehaviour
@@ -30,6 +31,9 @@ public class GlobalInputManager : MonoBehaviour
         Bindings.Add(InputAction.Attack1, InputButton.LeftTrigger);
         Bindings.Add(InputAction.Ability2, InputButton.RightBumper);
         Bindings.Add(InputAction.Attack2, InputButton.RightTrigger);
+
+        DataManager.Bindings = Bindings;
+        DataManager.Save();
     }
 
     // Update is called once per frame
