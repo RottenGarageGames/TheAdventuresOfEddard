@@ -57,7 +57,7 @@ public class CalebPlayerController : MonoBehaviour
 
     private void UpdateDirection(PlayerDirection playerDirection)
     {
-        if(Direction == playerDirection)
+        if (Direction == playerDirection)
         {
             return;
         }
