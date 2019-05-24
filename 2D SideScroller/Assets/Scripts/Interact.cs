@@ -9,7 +9,7 @@ public class Interact : MonoBehaviour
     void OnTriggerStay2D(Collider2D collider)
     {
         var interactable = collider.gameObject;
-        if(interactable.GetComponent<IInteractable>() != null && Input.GetButtonDown("Interact") && interactable.activeInHierarchy)
+        if(interactable.GetComponent<IInteractable>() != null && Input.GetButtonDown("LeftThumbButton") && interactable.activeInHierarchy)
         {
             //Call the default interact function
             var interactableObject = interactable.GetComponent<IInteractable>();
@@ -38,5 +38,45 @@ public class Interact : MonoBehaviour
 
             }
         }
+        if (interactable.GetComponent<IAutoInteract>() != null)
+        {
+          if(gameObject.transform.position.x - interactable.gameObject.transform.position.x < 1)
+            {
+                if(interactable.gameObject.GetComponent<Coin>() != null)
+                {
+                        var coin = interactable.gameObject.GetComponent<Coin>();
+                        coin.AddToPurse(gameObject);
+                        interactable.gameObject.GetComponent<Coin>().AddToPurse(gameObject);
+                }
+
+            }
+        }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var collidedObject = collision.gameObject;
+
+        if(collidedObject.GetComponent<IAutoInteract>() != null)
+        {
+            var autoInteractable = collidedObject.GetComponent<IAutoInteract>();
+            autoInteractable.Interact(gameObject);
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        var collidedObject = collision.gameObject;
+
+        if (collidedObject.GetComponent<IAutoInteract>() != null)
+        {
+            var autoInteractable = collidedObject.GetComponent<IAutoInteract>();
+
+
+            if (collidedObject.GetComponent<AutoPickUp>().target.gameObject == gameObject)
+            {
+                collidedObject.GetComponent<AutoPickUp>().RemoveTarget(gameObject);
+            }
+        }
+    }
+
 }

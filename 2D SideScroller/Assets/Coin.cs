@@ -3,19 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityInterfaces;
 
-public class Coin : Stat, IInteractable
+public class Coin : Stat
 {
-    [SerializeField]
-    private float _interactRadius;
-    public float interactRadius { get; set; }
+    private bool _beingPickedUp = false;
 
-    public void Interact(GameObject gameObject)
+    public void AddToPurse(GameObject player)
     {
-        var purse = gameObject.GetComponent<Currency>();
-
-        if(purse != null)
+        var purse = player.GetComponent<Currency>();
+  
+        if (purse != null && !_beingPickedUp)
         {
+            _beingPickedUp = true;
             purse.IncreaseStat(stat);
+            Destroy(gameObject);
         }
+    }
+    public void SetBeingPickedUp()
+    {
+        _beingPickedUp = true;
+    }
+    public void RemoveBeingPickedUp()
+    {
+        _beingPickedUp = false;
+    }
+    public bool ReturnBeingPickedUp()
+    {
+        return _beingPickedUp;
     }
 }
