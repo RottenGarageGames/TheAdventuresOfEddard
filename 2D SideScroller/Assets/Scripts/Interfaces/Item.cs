@@ -30,12 +30,12 @@ namespace Items
 
         private void Start()
         {
-            itemName = _itemName;
-            itemID = _itemID;
-            interactRadius = _interactRadius;
-            _circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
-            _circleCollider2D.radius = _interactRadius;
-            sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+            //itemName = _itemName;
+            //itemID = _itemID;
+            //interactRadius = _interactRadius;
+            //_circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
+            //_circleCollider2D.radius = _interactRadius;
+            //sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         }
         public Item()
         {

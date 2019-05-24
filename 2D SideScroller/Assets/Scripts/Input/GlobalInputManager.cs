@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Misc;
+using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CalebPlayerController))]
 public class GlobalInputManager : MonoBehaviour
 {
     public enum InputAction { Jump, Run, Interact, InventoryWheel, Attack1, Attack2, Ability1, Ability2 }
@@ -17,25 +19,16 @@ public class GlobalInputManager : MonoBehaviour
     private float _leftThumbButtonInput = 0;
     private float _rightThumbButtonInput = 0;
 
-    private Dictionary<InputAction, InputButton> Bindings = new Dictionary<InputAction, InputButton>();
-
     // Start is called before the first frame update
     void Start()
     {
-        Bindings.Add(InputAction.Jump, InputButton.BottomThumbButton);
-        Bindings.Add(InputAction.Interact, InputButton.LeftThumbButton);
-        Bindings.Add(InputAction.InventoryWheel, InputButton.RightThumbButton);
-        Bindings.Add(InputAction.Run, InputButton.TopThumbButton);
-        Bindings.Add(InputAction.Ability1, InputButton.LeftBumper);
-        Bindings.Add(InputAction.Attack1, InputButton.LeftTrigger);
-        Bindings.Add(InputAction.Ability2, InputButton.RightBumper);
-        Bindings.Add(InputAction.Attack2, InputButton.RightTrigger);
+        DataManager.Load();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var horizontalInput = Input.GetAxis("Horizontal");
+        var horizontalInput = Input.GetAxisRaw("Horizontal");
         _topThumbButtonInput = Input.GetAxis("TopThumbButton");
         _leftThumbButtonInput = Input.GetAxis("LeftThumbButton");
         _bottomThumbButtonInput = Input.GetAxis("BottomThumbButton");
@@ -54,7 +47,7 @@ public class GlobalInputManager : MonoBehaviour
             }
             else
             {
-                //PlayerController?.Interact();
+                PlayerController.Interact();
             }
         }
 
@@ -71,7 +64,7 @@ public class GlobalInputManager : MonoBehaviour
 
     private float GetInput(InputAction inputAction)
     {
-        var button = Bindings[inputAction];
+        var button = DataManager.ControllerBindings[inputAction];
 
         switch(button)
         {
