@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CalebPlayerController))]
 public class GlobalInputManager : MonoBehaviour
 {
     public enum InputAction { Jump, Run, Interact, InventoryWheel, Attack1, Attack2, Ability1, Ability2 }
@@ -21,13 +22,13 @@ public class GlobalInputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DataManager.Save();
+        DataManager.Load();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var horizontalInput = Input.GetAxis("Horizontal");
+        var horizontalInput = Input.GetAxisRaw("Horizontal");
         _topThumbButtonInput = Input.GetAxis("TopThumbButton");
         _leftThumbButtonInput = Input.GetAxis("LeftThumbButton");
         _bottomThumbButtonInput = Input.GetAxis("BottomThumbButton");
@@ -46,7 +47,7 @@ public class GlobalInputManager : MonoBehaviour
             }
             else
             {
-                //PlayerController?.Interact();
+                PlayerController.Interact();
             }
         }
 
@@ -63,7 +64,7 @@ public class GlobalInputManager : MonoBehaviour
 
     private float GetInput(InputAction inputAction)
     {
-        var button = Bindings[inputAction];
+        var button = DataManager.ControllerBindings[inputAction];
 
         switch(button)
         {

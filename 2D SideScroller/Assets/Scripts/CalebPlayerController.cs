@@ -13,6 +13,8 @@ public class CalebPlayerController : MonoBehaviour
     public float JumpForce = 10;
 
     public PlayerDirection Direction { get; private set; }
+
+    public PlayerStats PlayerStats = new PlayerStats();
     
     public bool Running { get; set; }
     public bool IsGrounded { get; private set; }
@@ -55,6 +57,11 @@ public class CalebPlayerController : MonoBehaviour
         }
     }
 
+    public void Interact()
+    {
+
+    }
+
     private void UpdateDirection(PlayerDirection playerDirection)
     {
         if (Direction == playerDirection)
@@ -67,5 +74,15 @@ public class CalebPlayerController : MonoBehaviour
         Vector3 newScale = transform.localScale;
         newScale.x *= -1;
         transform.localScale = newScale;
+    }
+
+    private void Damage(int damage = 1)
+    {
+        PlayerStats.Health -= damage;
+
+        if(PlayerStats.Health <= 0)
+        {
+            GameManager.KillPlayer(this);
+        }
     }
 }

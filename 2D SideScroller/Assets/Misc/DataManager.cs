@@ -10,7 +10,8 @@ namespace Misc
 {
     public static class DataManager
     {
-        public static Dictionary<InputAction, InputButton> Bindings { get; set; } = null;
+        public static Dictionary<InputAction, InputButton> ControllerBindings { get; set; } = null;
+        public static Dictionary<InputAction, KeyCode> KeyboardBindings { get; set; } = null;
 
         public static void Load()
         {
@@ -23,7 +24,8 @@ namespace Misc
 
                 var data = JsonConvert.DeserializeObject<GameData>(json);
 
-                Bindings = data.Bindings;
+                ControllerBindings = data.ControllerBindings;
+                KeyboardBindings = data.KeyboardBindings;
             }
             else
             {
@@ -39,7 +41,7 @@ namespace Misc
 
             string[] data =
             {
-                JsonConvert.SerializeObject(Bindings)
+                JsonConvert.SerializeObject(KeyboardBindings)
             };
 
             File.WriteAllLines(filePath, data);
@@ -47,26 +49,39 @@ namespace Misc
 
         private static void LoadDefaults()
         {
-            Bindings = new Dictionary<InputAction, InputButton>();
+            ControllerBindings = new Dictionary<InputAction, InputButton>();
 
-            Bindings.Add(InputAction.Jump, InputButton.BottomThumbButton);
-            Bindings.Add(InputAction.Interact, InputButton.LeftThumbButton);
-            Bindings.Add(InputAction.InventoryWheel, InputButton.RightThumbButton);
-            Bindings.Add(InputAction.Run, InputButton.TopThumbButton);
-            Bindings.Add(InputAction.Ability1, InputButton.LeftBumper);
-            Bindings.Add(InputAction.Attack1, InputButton.LeftTrigger);
-            Bindings.Add(InputAction.Ability2, InputButton.RightBumper);
-            Bindings.Add(InputAction.Attack2, InputButton.RightTrigger);
+            ControllerBindings.Add(InputAction.Jump, InputButton.RightThumbButton);
+            ControllerBindings.Add(InputAction.Interact, InputButton.LeftThumbButton);
+            ControllerBindings.Add(InputAction.InventoryWheel, InputButton.BottomThumbButton);
+            ControllerBindings.Add(InputAction.Run, InputButton.TopThumbButton);
+            ControllerBindings.Add(InputAction.Ability1, InputButton.LeftBumper);
+            ControllerBindings.Add(InputAction.Attack1, InputButton.LeftTrigger);
+            ControllerBindings.Add(InputAction.Ability2, InputButton.RightBumper);
+            ControllerBindings.Add(InputAction.Attack2, InputButton.RightTrigger);
+
+            KeyboardBindings = new Dictionary<InputAction, KeyCode>();
+
+            KeyboardBindings.Add(InputAction.Jump, KeyCode.Space);
+            KeyboardBindings.Add(InputAction.Interact, KeyCode.E);
+            KeyboardBindings.Add(InputAction.InventoryWheel, KeyCode.I);
+            KeyboardBindings.Add(InputAction.Run, KeyCode.F);
+            KeyboardBindings.Add(InputAction.Ability1, KeyCode.R);
+            KeyboardBindings.Add(InputAction.Attack1, KeyCode.Mouse0);
+            KeyboardBindings.Add(InputAction.Ability2, KeyCode.Q);
+            KeyboardBindings.Add(InputAction.Attack2, KeyCode.Mouse1);
         }
     }
 }
 
 public class GameData
 {
-    public Dictionary<InputAction, InputButton> Bindings { get; private set; }
+    public Dictionary<InputAction, InputButton> ControllerBindings { get; private set; } = null;
+    public Dictionary<InputAction, KeyCode> KeyboardBindings { get; private set; } = null;
 
-    public GameData(Dictionary<InputAction, InputButton> bindings)
+    public GameData(Dictionary<InputAction, InputButton> controllerBindings, Dictionary<InputAction, KeyCode> keyboardBindings)
     {
-        Bindings = bindings;
+        ControllerBindings = controllerBindings;
+        keyboardBindings = keyboardBindings;
     }
 }
