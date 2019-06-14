@@ -14,15 +14,23 @@ namespace Items
         
 
         [SerializeField]
-        private String _itemName;
+        public String OnStartItemName;
         public String itemName { get; set; }
 
         [SerializeField]
-        private int _itemID;
+        public String PrefabPath;
+        public String prefabPath { get; set; }
+
+        [SerializeField]
+        public int OnStartBasePrice;
+        public int basePrice { get; set; }
+
+        [SerializeField]
+        public int OnStartItemID;
         public int itemID { get; set; }
 
         [SerializeField]
-        private float _interactRadius;
+        public float OnStartInteractRadius;
         public float interactRadius { get; set; }
 
         [SerializeField]
@@ -30,12 +38,12 @@ namespace Items
 
         private void Start()
         {
-            //itemName = _itemName;
-            //itemID = _itemID;
-            //interactRadius = _interactRadius;
-            //_circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
-            //_circleCollider2D.radius = _interactRadius;
-            //sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+            itemName = OnStartItemName;
+            itemID = OnStartItemID;
+            interactRadius = OnStartInteractRadius;
+            _circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
+            _circleCollider2D.radius = OnStartInteractRadius;
+            sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         }
         public Item()
         {

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Max Health Potion",
+    "path": "Items/Potions/Max Health Potion.prefab",
+    "cost": 50,
+    "maxStack": 5,
+    "rarity": 2
+  },
+  {
+    "id": 2,
+    "name": "Minor Health Potion",
+    "path": "Items/Potions/Minor Health Potion.prefab",
+    "cost": 25,
+    "maxStack": 5,
+    "rarity": 1
+  },
+  {
+    "id": 3,
+    "name": "Max Shield Potion",
+    "path": "Items/Potions/Max Shield Potion.prefab",
+    "cost": 150,
+    "maxStack": 5,
+    "rarity": 2
+  },
+  {
+    "id": 4,
+    "name": "Speed Potion",
+    "path": "Items/Potions/Speed Potion.prefab",
+    "cost": 15,
+    "maxStack": 5,
+    "rarity": 2
+  }
+]

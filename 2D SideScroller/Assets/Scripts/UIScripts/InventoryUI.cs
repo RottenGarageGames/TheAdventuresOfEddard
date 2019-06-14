@@ -92,4 +92,8 @@ public class InventoryUI : MonoBehaviour
             DecreaseItemCount(slotToUpdate);
         }
     }
+    public void BuyItem(GameObject itemToAdd)
+    {
+
+    }
 }

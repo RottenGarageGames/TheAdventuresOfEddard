@@ -114,9 +114,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  _itemName: Max Health Potion
-  _itemID: 3
-  _interactRadius: 2.2
+  OnStartItemName: Max Health Potion
+  PrefabPath: Items/Potions/Max Health Potion.prefab
+  OnStartBasePrice: 50
+  OnStartItemID: 1
+  OnStartInteractRadius: 5
   _StackSize: 1
   _MaxStackSize: 5
   _AddSize: 1

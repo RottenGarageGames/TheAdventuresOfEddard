@@ -10,24 +10,24 @@ using Items;
 
 public class Inventory : MonoBehaviour
 {
-    //public List<IInventoryItem> _inventory;
+    public List<Item> Items;
 
     public Inventory()
     {
         //_inventory = items.Where(x => x is IInventoryItem).Select(x => x as IInventoryItem).ToList();
         //_inventory = new List<IInventoryItem>();
     }
-    public List<IEquipable> GetEquipableItems(List<Item> items)
+    public List<IEquipable> GetEquipableItems()
     {
-        return items.Where(x => x is IEquipable).Select(x => x as IEquipable).ToList();
+        return Items.Where(x => x is IEquipable).Select(x => x as IEquipable).ToList();
     }
-    public List<IWeapon> GetWeaponItems(List<Item> items)
+    public List<IWeapon> GetWeaponItems()
     {
-        return items.Where(x => x is IWeapon).Select(x => x as IWeapon).ToList();
+        return Items.Where(x => x is IWeapon).Select(x => x as IWeapon).ToList();
     }
-    public List<IConsumable> GetConsumableItems(List<Item> items)
+    public List<IConsumable> GetConsumableItems()
     {
-        return items.Where(x => x is IConsumable).Select(x => x as IConsumable).ToList();
+        return Items.Where(x => x is IConsumable).Select(x => x as IConsumable).ToList();
     }
     //public void AddItemToInventory(IInventoryItem inventoryItem)
     //{

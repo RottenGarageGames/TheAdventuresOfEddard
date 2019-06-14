@@ -6,7 +6,7 @@ using UnityInterfaces;
 
 public class PlayerInventory : Inventory
 {
-    public List<Item> Items;
+  
     private InventoryUI _playerInventory;
     public int maxInventorySlots;
 
