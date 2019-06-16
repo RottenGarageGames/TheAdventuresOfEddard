@@ -25,7 +25,8 @@ public class Interact : MonoBehaviour
                 // Add the item to player inventory if the interacting component has an inventory component
                 if (gameObject.GetComponent<PlayerInventory>() != null)
                 {
-                    if(gameObject.GetComponent<PlayerInventory>().AddItem(collider.gameObject.GetComponent<Item>()))
+                    var itemComponent = collider.gameObject.GetComponent<Item>();
+                    if (gameObject.GetComponent<PlayerInventory>().AddItem(itemComponent.Data))
                     {
                         //The item was added to the inventory
                     }

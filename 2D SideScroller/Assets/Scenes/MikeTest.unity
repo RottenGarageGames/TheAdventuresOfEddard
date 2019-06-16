@@ -1495,6 +1495,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &294118078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 294118081}
+  - component: {fileID: 294118080}
+  - component: {fileID: 294118079}
+  m_Layer: 0
+  m_Name: Chest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!58 &294118079
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294118078}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 7.82
+--- !u!114 &294118080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294118078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d93a47e06e0ff42ac1b5bd0c6cc83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestDropList: {fileID: 11400000, guid: 0433acc2b365d8645b0d27c3d7f54de2, type: 2}
+--- !u!4 &294118081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294118078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 154.03508, y: -43.7, z: -0.546875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1633291239}
+  m_Father: {fileID: 0}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &303974026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3943,6 +4005,17 @@ PrefabInstance:
       propertyPath: HealthBarCooldownTime
       value: 3.49
       objectReference: {fileID: 0}
+    - target: {fileID: 595505260191784349, guid: f0ca64217d755b843b5ea1db64d05cf2,
+        type: 3}
+      propertyPath: monsterDrops
+      value: 
+      objectReference: {fileID: 11400000, guid: 0433acc2b365d8645b0d27c3d7f54de2,
+        type: 2}
+    - target: {fileID: 595505260191784349, guid: f0ca64217d755b843b5ea1db64d05cf2,
+        type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1170567799274667176, guid: f0ca64217d755b843b5ea1db64d05cf2, type: 3}
     - {fileID: 4271156409187403445, guid: f0ca64217d755b843b5ea1db64d05cf2, type: 3}
@@ -4680,6 +4753,7 @@ MonoBehaviour:
   - {fileID: 1748873535}
   ShopGold: 500
   ShopGoldText: {fileID: 424760594}
+  itemDatabase: {fileID: 11400000, guid: 0433acc2b365d8645b0d27c3d7f54de2, type: 2}
   player: {fileID: 0}
 --- !u!58 &818195077
 CircleCollider2D:
@@ -5973,26 +6047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728c80293c1f8734099b67e640127ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipItem:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SendMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnStartItemName: 
-  OnStartBasePrice: 0
-  OnStartItemID: 0
-  OnStartInteractRadius: 0
 --- !u!212 &1150466456
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6388,13 +6442,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 150
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Shop Inventory
+  m_Text: Toz Plexwad, Master of Potions.
 --- !u!222 &1180511773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6861,7 +6915,9 @@ MonoBehaviour:
   itemID: 0
   maxStack: 0
   currentStack: 0
+  shop: {fileID: 818195076}
   inventoryUI: {fileID: 1950767729}
+  ParentImage: {fileID: 1592249405}
 --- !u!114 &1239585766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7316,7 +7372,9 @@ MonoBehaviour:
   itemID: 0
   maxStack: 0
   currentStack: 0
+  shop: {fileID: 818195076}
   inventoryUI: {fileID: 1950767729}
+  ParentImage: {fileID: 1748873537}
 --- !u!114 &1317271128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8809,6 +8867,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1626476810}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1633291238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633291239}
+  - component: {fileID: 1633291240}
+  m_Layer: 0
+  m_Name: SquareLighting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1633291239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633291238}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.4, y: 1.2, z: 0.546875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 294118081}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1633291240
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633291238}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 3222389008561514ab7ac1326b67e651, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 20.48, y: 15.35}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &1646197355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10252,26 +10389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728c80293c1f8734099b67e640127ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipItem:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SendMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnStartItemName: 
-  OnStartBasePrice: 0
-  OnStartItemID: 0
-  OnStartInteractRadius: 0
 --- !u!212 &1776920280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11382,7 +11499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da10afef62b9dba47b316b7bbdb4fa42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: 50
+  stat: 250
   maxStat: 15000
   currencyText: {fileID: 214908046}
 --- !u!1 &1959773442
@@ -11471,7 +11588,9 @@ MonoBehaviour:
   itemID: 0
   maxStack: 0
   currentStack: 0
+  shop: {fileID: 818195076}
   inventoryUI: {fileID: 1950767729}
+  ParentImage: {fileID: 1867761644}
 --- !u!114 &1961052765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11971,7 +12090,9 @@ MonoBehaviour:
   itemID: 0
   maxStack: 0
   currentStack: 0
+  shop: {fileID: 818195076}
   inventoryUI: {fileID: 1950767729}
+  ParentImage: {fileID: 725555524}
 --- !u!114 &2045933372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12193,18 +12314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d560e990553321e4c8472394e57cd3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipItem:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnStartItemName: 
-  OnStartBasePrice: 0
-  OnStartItemID: 0
-  OnStartInteractRadius: 0
-  _StackSize: 4
-  _MaxStackSize: 5
-  _AddSize: 4
+  data: {fileID: 0}
 --- !u!58 &2062845085
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -12424,7 +12534,9 @@ MonoBehaviour:
   itemID: 0
   maxStack: 0
   currentStack: 0
+  shop: {fileID: 818195076}
   inventoryUI: {fileID: 1950767729}
+  ParentImage: {fileID: 509508999}
 --- !u!114 &2079708460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13498,6 +13610,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2875899318731879929, guid: 6efc4212aff43a84dbdd5d27855e24b5,
+        type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d830eceebc37a5439f680cc1aa32e6e,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6efc4212aff43a84dbdd5d27855e24b5, type: 3}
 --- !u!1001 &3293479984315970030
@@ -13573,6 +13691,15 @@ PrefabInstance:
     - target: {fileID: 3293479984400639381, guid: 8921df968f88d5c4a956e8a0f07b18db,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552555398568137942, guid: 8921df968f88d5c4a956e8a0f07b18db,
+        type: 3}
+      propertyPath: Items.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281967107, guid: 8921df968f88d5c4a956e8a0f07b18db, type: 3}
+      propertyPath: Items.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

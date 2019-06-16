@@ -12,11 +12,11 @@ public class PlayerInventory : Inventory
 
     void Awake()
     {
-        Items = new List<Item>();
+        Items = new List<ItemData>();
         _playerInventory = gameObject.GetComponent<InventoryUI>();
     }
     
-    public bool AddItem(Item item)
+    public bool AddItem(ItemData item)
     {
         bool itemAdded = false;
 
@@ -25,12 +25,12 @@ public class PlayerInventory : Inventory
             bool matchingItemInInventory = CheckItemForMatchingID(item);
 
             //If the item implements the stackable interface and also matches the id of an item in the inventory
-            if (item.GetComponent<IStackable>() != null && matchingItemInInventory)
+            if (matchingItemInInventory)
             {
-                var stackableItem = item as IStackable;
-                var itemToUpdate = Items.FirstOrDefault(x => x.itemID == item.itemID && x.GetComponent<IStackable>().StackSize < x.GetComponent<IStackable>().MaxStackSize);
+                var stackableItem = item;
+                var itemToUpdate = Items.FirstOrDefault(x => x.itemID == item.itemID && x.StackSize < x.MaxStackSize);
 
-                var itemToUpdateAsStackable = itemToUpdate as IStackable;
+                var itemToUpdateAsStackable = itemToUpdate;
 
                 //If the item to add matches the item in the inventory
                 if (itemToUpdate != null)
@@ -44,7 +44,7 @@ public class PlayerInventory : Inventory
 
                         //Max out item stack in inventory
                         _playerInventory.SetUIText(item.itemID, amountToFillCurrentStack);
-                        itemToUpdate.GetComponent<IStackable>().StackSize = itemToUpdateAsStackable.MaxStackSize;
+                        itemToUpdate.StackSize = itemToUpdateAsStackable.MaxStackSize;
 
                         //Add the overflow to the new stack in the next slot
                         stackableItem.StackSize = overflowSize;
@@ -57,7 +57,7 @@ public class PlayerInventory : Inventory
                     else
                     {
                         _playerInventory.SetUIText(item.itemID, stackableItem.StackSize);
-                        itemToUpdate.GetComponent<IStackable>().StackSize += stackableItem.StackSize;
+                        itemToUpdate.StackSize += stackableItem.StackSize;
                         itemAdded = true;
                     }
                 }
@@ -75,7 +75,7 @@ public class PlayerInventory : Inventory
         }
         return itemAdded;
     }
-    public bool AddNonStackableItem(Item item)
+    public bool AddNonStackableItem(ItemData item)
     {
         Items.Add(item);
         SendUIMessage(item);
@@ -86,10 +86,10 @@ public class PlayerInventory : Inventory
         var itemToRemove = Items.FirstOrDefault(x => x.itemID == itemID);
         Items.Remove(itemToRemove);
     }
-    public void SendUIMessage(Item item)
+    public void SendUIMessage(ItemData item)
     {
-        var stackable = item as IStackable;
-        if (item as IStackable == null)
+        var stackable = item;
+        if (item.MaxStackSize == 1)
         {
             _playerInventory.SetUISlot(item.sprite, 1, item.itemID);
         }
@@ -98,11 +98,11 @@ public class PlayerInventory : Inventory
             _playerInventory.SetStackableUISlot(item.sprite, stackable.StackSize, item.itemID, stackable.MaxStackSize);
         }
     }
-    private bool CheckItemForMatchingID(Item itemToAdd)
+    private bool CheckItemForMatchingID(ItemData itemToAdd)
     {
-        foreach(Item item in Items)
+        foreach(ItemData item in Items)
         {
-            if(item.GetComponent<IInventoryItem>().itemID == itemToAdd.GetComponent<IInventoryItem>().itemID)
+            if(item.itemID == itemToAdd.itemID)
             {
                 return true;
             }
@@ -111,16 +111,18 @@ public class PlayerInventory : Inventory
     }
     public void UseItem(int itemID)
     {
-        var itemToUse = Items.FirstOrDefault(x => x.itemID == itemID);
+        var item = Items.FirstOrDefault(x => x.itemID == itemID);
 
-        if(itemToUse as IEquipable != null)
+       var itemToUse = Instantiate(item.itemPrefab);
+
+        if(itemToUse.GetComponent<IEquipable>() != null)
         {
-            var equipableItem = itemToUse as IEquipable;
+            var equipableItem = itemToUse.GetComponent<IEquipable>();
             equipableItem.Equip();
         }
-        else if(itemToUse as IConsumable != null)
+        else if(itemToUse.GetComponent<IConsumable>() != null)
         {
-            var consumableItem = itemToUse as IConsumable;
+            var consumableItem = itemToUse.GetComponent<IConsumable>();
             consumableItem.Consume(gameObject);
         }
         else

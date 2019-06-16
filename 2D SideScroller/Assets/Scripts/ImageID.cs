@@ -10,6 +10,7 @@ public class ImageID : MonoBehaviour
     public int currentStack;
     public Shop shop;
     public InventoryUI inventoryUI;
+    public Image ParentImage;
 
     public void UseItem()
     {
@@ -28,9 +29,7 @@ public class ImageID : MonoBehaviour
     }
     public void BuyItem()
     {
-        var parentImage = gameObject.GetComponentInParent(typeof(Image)) as Image;
-        shop.ValidTransaction(1);
-        inventoryUI.SetUISlot(parentImage.sprite, 1, 1);
+        shop.ProcessTransaction(itemID);
         Debug.Log("Buy Item");
     }
 }

@@ -109,17 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433e21c61480d6946a96f1b1c50e4d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipItem:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnStartItemName: Minor Health Potion
-  PrefabPath: Items/Potions/Minor Health Potion.prefab
-  OnStartBasePrice: 25
-  OnStartItemID: 2
-  OnStartInteractRadius: 5
-  _StackSize: 1
-  _MaxStackSize: 5
-  _AddSize: 1
+  data: {fileID: 11400000, guid: 1701b2247b730cc4d8e10c81953ab0b5, type: 2}
   healAmount: 1

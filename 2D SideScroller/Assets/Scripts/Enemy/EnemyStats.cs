@@ -16,6 +16,8 @@ public class EnemyStats : MonoBehaviour
     private int meleeDamage;
     private float _timer;
 
+    public ItemList monsterDrops;
+
 
 
     public GameObject enemyHealthBar;
@@ -57,6 +59,10 @@ public class EnemyStats : MonoBehaviour
             {
                 Instantiate(bloodEffect, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             }
+            //if(monsterDrops != null)
+            //{
+            //    SpawnDrops();
+            //}
             Destroy(gameObject);
             
         }
@@ -96,5 +102,12 @@ public class EnemyStats : MonoBehaviour
             }
         }
     }
+    public void SpawnDrops()
+    {
+        var length = monsterDrops.itemDatas.Count;
+        var itemToSpawn = monsterDrops.itemDatas[Random.Range(0, length)];
+        Debug.Log(itemToSpawn);
+        Instantiate(itemToSpawn, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+    }   
 
 }

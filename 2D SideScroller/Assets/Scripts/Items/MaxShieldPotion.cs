@@ -9,5 +9,6 @@ public class MaxShieldPotion : StackableItem, IConsumable
     {
         var healthComponent = player.GetComponent<PlayerHealth>();
         healthComponent.MaxShield();
+        Destroy(gameObject);
     }
 }
