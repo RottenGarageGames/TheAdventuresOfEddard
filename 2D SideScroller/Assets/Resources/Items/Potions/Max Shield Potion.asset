@@ -23,3 +23,4 @@ MonoBehaviour:
   prefabPath: Items/Potions/Max Shield Potion
   itemPrefab: {fileID: 2875899318731879928, guid: 6efc4212aff43a84dbdd5d27855e24b5,
     type: 3}
+  rarity: 2

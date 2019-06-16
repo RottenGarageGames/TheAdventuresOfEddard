@@ -23,3 +23,4 @@ MonoBehaviour:
   prefabPath: Items/Potions/Max Health Potion
   itemPrefab: {fileID: 5601281429617833020, guid: 46118256a3957944dabc17958afb1020,
     type: 3}
+  rarity: 1

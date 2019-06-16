@@ -16,4 +16,17 @@ public class ItemData : ScriptableObject
     public Sprite sprite;
     public string prefabPath;
     public GameObject itemPrefab;
+    public Rarity rarity;
+
+
+
+}
+
+public enum Rarity
+{
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary
 }
