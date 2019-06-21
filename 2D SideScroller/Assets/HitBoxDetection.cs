@@ -11,7 +11,7 @@ public class HitBoxDetection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(currentDamage);
+            //collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(currentDamage);
         }
     }
     public void SetEnemyMeleeDamage(int meleeDamage)

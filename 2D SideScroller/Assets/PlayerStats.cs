@@ -3,8 +3,8 @@
 [Serializable]
 public class PlayerStats
 {
-    public int Health;
-    public int MaxHealth;
+    public int Health = 5;
+    public int MaxHealth = 5;
 
     public int Stamina;
     public int MaxStamina;

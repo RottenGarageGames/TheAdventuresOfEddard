@@ -8,7 +8,7 @@ public class MaxHealthPotion : StackableItem, IConsumable
 
     public void Consume(GameObject player)
     {
-        var healthComponent = player.GetComponent<PlayerHealth>();
-        healthComponent.MaxOutHealth();
+        //var healthComponent = player.GetComponent<PlayerHealth>();
+        //healthComponent.MaxOutHealth();
     }
 }
