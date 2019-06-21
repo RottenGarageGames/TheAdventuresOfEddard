@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : ScriptableObject
 {
     public static void KillPlayer(CalebPlayerController player)
     {

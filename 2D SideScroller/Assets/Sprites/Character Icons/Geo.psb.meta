@@ -29,14 +29,14 @@ ScriptedImporter:
     21200010: Geo_GO/Geo_GO/Head/SpriteRenderer
     21200012: Geo_GO/Geo_GO/Leg 1/SpriteRenderer
     21200014: Geo_GO/Geo_GO/Leg 2/SpriteRenderer
-    21300016: 79918237101e647c38544beb38d372b7
-    21300018: c88281fb5f2844983bf7550d7589edae
-    21300020: b7c345063e9984398b9bcbffacaebbcc
-    21300022: 7a0e943a98793451480b846ae5c17f1a
-    21300024: 11c456e47479e4f95b1c49dd439c0e80
-    21300026: aa85b2ed5ac7c496ab43f4c08d64c20c
-    21300028: 4d4a91df355ee422f805bacdbca96a55
-    21300030: b5ba223b8abed4c28809bafbf075bbc2
+    21300000: Eyes
+    21300002: Head
+    21300004: Body
+    21300006: Arm 1
+    21300008: Arm 2
+    21300010: Leg 1
+    21300012: Leg 2
+    21300014: Cape
     100100000: Geo_GO
   externalObjects: {}
   userData: 
@@ -364,6 +364,5 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
   boneGOs: []
+  firstCreate: 0
   generateGOHierarchy: 0
-  textureAssetName: Geo
-  prefabAssetName: Geo_GO

@@ -18,7 +18,7 @@ namespace Misc
             var directory = new DirectoryInfo(Application.persistentDataPath);
             var lastSave = directory.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
 
-            if (lastSave is null)
+            if (lastSave != null)
             {
                 var json = File.ReadAllText(lastSave.FullName);
 
@@ -70,6 +70,9 @@ namespace Misc
             KeyboardBindings.Add(InputAction.Attack1, KeyCode.Mouse0);
             KeyboardBindings.Add(InputAction.Ability2, KeyCode.Q);
             KeyboardBindings.Add(InputAction.Attack2, KeyCode.Mouse1);
+            KeyboardBindings.Add(InputAction.Left, KeyCode.A);
+            KeyboardBindings.Add(InputAction.Right, KeyCode.D);
+            KeyboardBindings.Add(InputAction.Crouch, KeyCode.S);
         }
     }
 }
@@ -82,6 +85,6 @@ public class GameData
     public GameData(Dictionary<InputAction, InputButton> controllerBindings, Dictionary<InputAction, KeyCode> keyboardBindings)
     {
         ControllerBindings = controllerBindings;
-        keyboardBindings = keyboardBindings;
+        KeyboardBindings = keyboardBindings;
     }
 }

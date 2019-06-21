@@ -9,7 +9,7 @@ public class HealthPotion : StackableItem, IConsumable
 
    public void Consume(GameObject player)
     {
-        var healthComponent = player.GetComponent<PlayerHealth>();
-        healthComponent.RestoreHealth(healAmount);
+        //var healthComponent = player.GetComponent<PlayerHealth>();
+        //healthComponent.RestoreHealth(healAmount);
     }
 }
