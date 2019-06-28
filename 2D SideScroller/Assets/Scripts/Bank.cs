@@ -68,8 +68,8 @@ public class Bank : MonoBehaviour
             BankInterface.gameObject.SetActive(true);
             Player = collision.gameObject;
             playerCurrency = Player.GetComponent<Currency>();
+
             
-            playerID = gameObject.GetComponent<CalebPlayerController>().PlayerID
             DataManager.PlayerOneBankData = new BankData(Balance, null, CalebPlayerController.PlayerID.PlayerOne);
             Balance = DataManager.PlayerOneBankData.Balance;
         }
