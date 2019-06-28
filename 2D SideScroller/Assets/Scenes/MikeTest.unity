@@ -574,6 +574,7 @@ MonoBehaviour:
   BalanceDisplay: {fileID: 315656820}
   TransactionAmount: 
   InputField: {fileID: 887938587}
+  BankInterface: {fileID: 1194269870}
 --- !u!4 &94786976
 Transform:
   m_ObjectHideFlags: 0
