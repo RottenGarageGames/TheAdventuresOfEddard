@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityInterfaces;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -37,7 +35,6 @@ public class CalebPlayerController : MonoBehaviour
     {
         IsGrounded = Physics2D.OverlapCircle(transform.position, 5.4f, LayerMask.GetMask("Ground"));
 
-
         //if(Input.GetKeyDown(KeyCode.L))
         //{
         //    Damage();
@@ -70,13 +67,13 @@ public class CalebPlayerController : MonoBehaviour
 
     public void Interact()
     {
-      var isInteracting = Physics2D.OverlapCircle(transform.position, 5.4f, LayerMask.GetMask("Interactable"));
+        var interactable = Physics2D.OverlapCircle(transform.position, 5.4f, LayerMask.GetMask("Interactable"));
 
-        if(isInteracting)
+        if(interactable)
         {
-          
-           var interactable = isInteracting.gameObject.GetComponent<Interactable>();
-           interactable.Interact(gameObject);
+           var obj = interactable.gameObject.GetComponent<Interactable>();
+
+           obj.Interact(gameObject);
         }
     }
 

@@ -1,10 +1,6 @@
-﻿using Items;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityInterfaces;
 
 public class Shop : Inventory
 {
@@ -12,19 +8,19 @@ public class Shop : Inventory
     public int ShopGold;
     public Text ShopGoldText;
 
-    public ItemList itemDatabase;
+    public List<ItemData> items;
 
     public GameObject player;
 
     private void Start()
     {
-        var length = itemDatabase.itemDatas.Count;
+        var length = items.Count;
 
         Debug.Log(length);
 
         foreach(var slot in ShopSlots)
         {
-            var randomItem = itemDatabase.itemDatas[Random.Range(0, length)];
+            var randomItem = items[Random.Range(0, length)];
             Debug.Log(randomItem.Name.ToString());
             var cloneItem = new ItemData(randomItem);
             Debug.Log(cloneItem.Name.ToString());

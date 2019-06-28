@@ -2,34 +2,9 @@
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(menuName = "Items/New Item", fileName = "StackableItemName.asset")]
+[CreateAssetMenu(menuName = "Items/New Item", fileName = "Item.asset")]
 public class ItemData : ScriptableObject
 {
-    public enum ItemCategory
-    {
-        Potion,
-        Weapon
-    };
-
-    public enum ItemRarity
-    {
-        Common,
-        Uncommon,
-        Rare,
-        Epic,
-        Legendary
-    };
-
-    public string Name;
-    public ItemCategory[] Category;
-    public int Price;
-    public int Value;
-    public int StackSize;
-    public int MaxStackSize;
-    public Sprite Sprite;
-    public GameObject Prefab;
-    public ItemRarity Rarity;
-
     public ItemData(ItemData itemData)
     {
         Name = itemData.Name;

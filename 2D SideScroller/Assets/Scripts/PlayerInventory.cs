@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Items;
 using System.Linq;
 using UnityEngine;
 using UnityInterfaces;
@@ -11,19 +11,14 @@ public class PlayerInventory : Inventory
 
     void Awake()
     {
-        Items = new List<ItemData>();
         _playerInventory = gameObject.GetComponent<InventoryUI>();
     }
     
-    public bool AddItem(ItemData newItem)
+    public bool AddItem(Item item)
     {
-        var item = new ItemData(newItem);
-
         bool itemAdded = false;
 
-        bool matchingItemInInventory = CheckItemForMatchingName(item);
-
-        if (Items.Count < maxInventorySlots || matchingItemInInventory)
+        if (Items.Count < maxInventorySlots || Items.Any(x => x.Name = item.Name))
         {
 
             //If the item implements the stackable interface and also matches the id of an item in the inventory
@@ -122,15 +117,9 @@ public class PlayerInventory : Inventory
             var equipableItem = itemToUse.GetComponent<IEquipable>();
             equipableItem.Equip();
         }
-        else if(itemToUse.GetComponent<IConsumable>() != null)
-        {
-            var consumableItem = itemToUse.GetComponent<IConsumable>();
-            consumableItem.Consume(gameObject);
-        }
         else
         {
-            Debug.Log("The item is neither a consumable or an equipable item: " + item.Name);
+            Debug.Log("The item is not an equipable item: " + item.Name);
         }
-
     }
 }

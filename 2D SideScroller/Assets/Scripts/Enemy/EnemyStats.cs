@@ -16,7 +16,7 @@ public class EnemyStats : MonoBehaviour
     private int meleeDamage;
     private float _timer;
 
-    public ItemList monsterDrops;
+    public List<ItemData> monsterDrops;
 
 
 
@@ -104,8 +104,8 @@ public class EnemyStats : MonoBehaviour
     }
     public void SpawnDrops()
     {
-        var length = monsterDrops.itemDatas.Count;
-        var itemToSpawn = monsterDrops.itemDatas[Random.Range(0, length)];
+        var length = monsterDrops.Count;
+        var itemToSpawn = monsterDrops[Random.Range(0, length)];
         Debug.Log(itemToSpawn);
         Instantiate(itemToSpawn, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
     }   

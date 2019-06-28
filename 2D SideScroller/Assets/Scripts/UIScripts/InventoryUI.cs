@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections;
+﻿using Items;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    public List<GameObject> inventorySlots;
+    public List<Image> inventorySlots;
     public PlayerInventory playerInventory;
 
-    public void SetUISlot(ItemData newItemData)
+    public void SetUISlot(Item item)
     {
-        foreach (GameObject item in inventorySlots)
+        foreach (var slot in inventorySlots)
         {
-            if (item.GetComponent<Image>().sprite == null)
+            if (slot.sprite == null)
             {
-                
-                var currentSlot = item.GetComponent<Image>();
-                var tempColor = currentSlot.color;
+                var tempColor = slot.color;
                 tempColor.a = 1f;
-                currentSlot.sprite = newItemData.Sprite;
-                currentSlot.color = tempColor;
+                slot.sprite = item.Sprite;
+                slot.color = tempColor;
 
-                item.GetComponent<ImageID>().itemData = newItemData;
+                GetComponent<ImageID>().itemData = newItemData;
 
                 if (newItemData.StackSize > 1)
                 {
@@ -33,30 +29,7 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
-    //public void SetStackableUISlot(Sprite itemSprite, int count, int imageID, int maxStack)
-    //{
-    //    foreach (GameObject item in inventorySlots)
-    //    {
-    //        if (item.GetComponent<Image>().sprite == null)
-    //        {
-    //            var currentSlot = item.GetComponent<Image>();
-    //            var tempColor = currentSlot.color;
-    //            tempColor.a = 1f;
-    //            currentSlot.sprite = itemSprite;
-    //            currentSlot.color = tempColor;
 
-    //            item.GetComponent<ImageID>().itemID = imageID;
-    //            item.GetComponent<ImageID>().maxStack = maxStack;
-    //            item.GetComponent<ImageID>().currentStack += count;
-
-    //            if (count > 1)
-    //            {
-    //                item.GetComponentInChildren<Text>().text = count.ToString();
-    //            }
-    //            break;
-    //        }
-    //    }
-    //}
     public void SetUIText()
     {
        foreach(var slot in inventorySlots)
