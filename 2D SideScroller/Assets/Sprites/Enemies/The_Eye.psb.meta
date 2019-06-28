@@ -17,10 +17,10 @@ ScriptedImporter:
     21200002: The_Eye_GO/The_Eye_GO/Appendage 2/SpriteRenderer
     21200004: The_Eye_GO/The_Eye_GO/Base/SpriteRenderer
     21200006: The_Eye_GO/The_Eye_GO/Iris/SpriteRenderer
-    21300000: Iris
-    21300002: Base
-    21300004: Appendage 1
-    21300006: Appendage 2
+    21300008: a35bb52d7001d4cc38255a4c30608fcb
+    21300010: be6e45f336a804c589ac00fc36a4681f
+    21300012: 802a3cdaf4f7e4ae3bb1dc85c7032fbb
+    21300014: 248deb93f81c64e68a0316e9652d3249
     100100000: The_Eye_GO
   externalObjects: {}
   userData: 
@@ -236,5 +236,6 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
   boneGOs: []
-  firstCreate: 0
   generateGOHierarchy: 0
+  textureAssetName: The_Eye
+  prefabAssetName: The_Eye_GO

@@ -9,68 +9,80 @@ public class InventoryUI : MonoBehaviour
     public List<GameObject> inventorySlots;
     public PlayerInventory playerInventory;
 
-    public void SetUISlot(Sprite itemSprite, int count, int imageID)
+    public void SetUISlot(ItemData newItemData)
     {
         foreach (GameObject item in inventorySlots)
         {
             if (item.GetComponent<Image>().sprite == null)
             {
+                
                 var currentSlot = item.GetComponent<Image>();
                 var tempColor = currentSlot.color;
                 tempColor.a = 1f;
-                currentSlot.sprite = itemSprite;
+                currentSlot.sprite = newItemData.sprite;
                 currentSlot.color = tempColor;
 
-                item.GetComponent<ImageID>().itemID = imageID;
+                item.GetComponent<ImageID>().itemData = newItemData;
 
-                if (count > 1)
+                if (newItemData.StackSize > 1)
                 {
-                    item.GetComponentInChildren<Text>().text = count.ToString();
+                    item.GetComponentInChildren<Text>().text = newItemData.StackSize.ToString();
                 }
                 break;
             }
         }
     }
-    public void SetStackableUISlot(Sprite itemSprite, int count, int imageID, int maxStack)
+    //public void SetStackableUISlot(Sprite itemSprite, int count, int imageID, int maxStack)
+    //{
+    //    foreach (GameObject item in inventorySlots)
+    //    {
+    //        if (item.GetComponent<Image>().sprite == null)
+    //        {
+    //            var currentSlot = item.GetComponent<Image>();
+    //            var tempColor = currentSlot.color;
+    //            tempColor.a = 1f;
+    //            currentSlot.sprite = itemSprite;
+    //            currentSlot.color = tempColor;
+
+    //            item.GetComponent<ImageID>().itemID = imageID;
+    //            item.GetComponent<ImageID>().maxStack = maxStack;
+    //            item.GetComponent<ImageID>().currentStack += count;
+
+    //            if (count > 1)
+    //            {
+    //                item.GetComponentInChildren<Text>().text = count.ToString();
+    //            }
+    //            break;
+    //        }
+    //    }
+    //}
+    public void SetUIText()
     {
-        foreach (GameObject item in inventorySlots)
+       foreach(var slot in inventorySlots)
         {
-            if (item.GetComponent<Image>().sprite == null)
+            if (slot.GetComponent<ImageID>() != null)
             {
-                var currentSlot = item.GetComponent<Image>();
-                var tempColor = currentSlot.color;
-                tempColor.a = 1f;
-                currentSlot.sprite = itemSprite;
-                currentSlot.color = tempColor;
+                var stackText = slot.GetComponentInChildren<Text>();
 
-                item.GetComponent<ImageID>().itemID = imageID;
-                item.GetComponent<ImageID>().maxStack = maxStack;
-                item.GetComponent<ImageID>().currentStack += count;
-
-                if (count > 1)
+                if (slot.GetComponent<ImageID>()?.itemData?.StackSize >= 2)
                 {
-                    item.GetComponentInChildren<Text>().text = count.ToString();
+                    stackText.text = (slot.GetComponent<ImageID>().itemData.StackSize).ToString();
                 }
-                break;
+                else
+                {
+                    stackText.text = " ";
+                }
             }
         }
-    }
-    public void SetUIText(int id, int stackSize)
-    {
-        var slotToUpdate = inventorySlots.FirstOrDefault(x => x.GetComponent<ImageID>().itemID == id && x.GetComponent<ImageID>().currentStack + stackSize <= x.GetComponent<ImageID>().maxStack);
-        slotToUpdate.GetComponent<ImageID>().currentStack += stackSize;
-        slotToUpdate.GetComponentInChildren<Text>().text = (slotToUpdate.GetComponent<ImageID>().currentStack).ToString();
     }
     public void DecreaseItemCount(GameObject slotToUpdate)
     {
-        slotToUpdate.GetComponentInChildren<Text>().text = (slotToUpdate.GetComponent<ImageID>().currentStack).ToString();
+        slotToUpdate.GetComponentInChildren<Text>().text = (slotToUpdate.GetComponent<ImageID>().itemData.StackSize).ToString();
     }
     public void RemoveItemFromUISlot(GameObject slotToUpdate)
     {
         var slotImageID = slotToUpdate.GetComponent<ImageID>();
-        slotImageID.itemID = 0;
-        slotImageID.maxStack = 0;
-        slotImageID.currentStack = 0;
+        slotImageID.itemData = null;
         var tempColor = slotToUpdate.GetComponent<Image>().color;
         tempColor.a = 0f;
         slotToUpdate.GetComponent<Image>().color = tempColor;

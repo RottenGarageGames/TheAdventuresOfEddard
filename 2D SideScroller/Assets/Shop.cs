@@ -18,22 +18,22 @@ public class Shop : Inventory
 
     private void Start()
     {
-
-
         var length = itemDatabase.itemDatas.Count;
 
         Debug.Log(length);
 
         foreach(var slot in ShopSlots)
         {
-            var testItem = itemDatabase.itemDatas[Random.Range(0, length)];
-            Debug.Log(testItem);
-            Items.Add(testItem);
+            var randomItem = itemDatabase.itemDatas[Random.Range(0, length)];
+            Debug.Log(randomItem.itemName.ToString());
+            var cloneItem = new ItemData(randomItem);
+            Debug.Log(cloneItem.itemName.ToString());
+            Items.Add(cloneItem);
             var slotImageId = slot.GetComponentInChildren<ImageID>();
             var slotText = slot.GetComponentInChildren<Text>();
-            slot.gameObject.GetComponent<Image>().sprite = testItem.sprite;
-            slotImageId.itemID = testItem.itemID;
-            slotText.text = testItem.itemName.ToString();
+            slot.gameObject.GetComponent<Image>().sprite = cloneItem.sprite;
+            slotImageId.itemData = cloneItem;
+            slotText.text = cloneItem.itemName.ToString();
 
 
             var priceText = slot.GetComponentsInChildren<Text>();
@@ -42,7 +42,7 @@ public class Shop : Inventory
             {
                 if(textComponent.name == "Price")
                 {
-                    textComponent.text = "Price: " + testItem.basePrice.ToString();
+                    textComponent.text = "Price: " + cloneItem.basePrice.ToString();
                 }
             }
         }
@@ -70,9 +70,8 @@ public class Shop : Inventory
             return false;
         }
     }
-    public void ProcessTransaction(int itemID)
+    public void ProcessTransaction(ItemData item)
     {
-        var item = Items.FirstOrDefault(x => x.itemID == itemID);
         if(ValidTransaction(item.basePrice))
         {
             //Need to load item

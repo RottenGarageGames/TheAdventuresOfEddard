@@ -17,9 +17,10 @@ MonoBehaviour:
   itemCategory: Potion
   basePrice: 50
   sellValue: 50
-  StackSize: 1
+  StackSize: 3
   MaxStackSize: 5
   sprite: {fileID: 21300000, guid: 7d47b2210164845fcb63c5516a96a409, type: 3}
   prefabPath: Items/Potions/Minor Health Potion
   itemPrefab: {fileID: 3327984822213960113, guid: 518c2c9537143f143b8d49babf95533f,
     type: 3}
+  rarity: 0

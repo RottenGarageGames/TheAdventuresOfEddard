@@ -6,15 +6,18 @@ using UnityInterfaces;
 public class Chest : MonoBehaviour, IInteractable
 {
     public ItemList chestDropList;
-    public float CurrencyDropRate;
-    public float ItemDropRate;
-    public float RareItemDrop;
-    public float MultipleItemDropRate;
+    public DropRates DropRates;
+
+    public bool Unused = true;
     // Start is called before the first frame update
 
     public void Interact(GameObject interactingObject)
     {
-        Spawner.SpawnRandomItem(chestDropList, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y));
+        if (Unused)
+        {
+            Unused = false;        
+            Spawner.SpawnRandomItem(chestDropList, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y));
+        }
 
         Destroy(gameObject);
     }

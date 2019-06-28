@@ -17,7 +17,7 @@ MonoBehaviour:
   itemCategory: Potion
   basePrice: 150
   sellValue: 25
-  StackSize: 3
+  StackSize: 1
   MaxStackSize: 5
   sprite: {fileID: 21300000, guid: e1ca6c912cffa45ebae9b03caed0d168, type: 3}
   prefabPath: Items/Potions/Max Shield Potion
