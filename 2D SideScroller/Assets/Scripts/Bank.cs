@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Misc;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,11 @@ public class Bank : MonoBehaviour
     private Currency playerCurrency;
     public string TransactionAmount;
     public InputField InputField;
-
+    public Canvas BankInterface;
     // Start is called before the first frame update
     void Start()
     {
-
+        BankInterface.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,7 +34,13 @@ public class Bank : MonoBehaviour
         {
             Balance -= withdrawalAmount;
             playerCurrency.stat += withdrawalAmount;
+            ValidTransaction();
         }
+        else
+        {
+            InvalidTransaction();
+        }
+        
     }
     public void Deposit()
     {
@@ -42,9 +49,12 @@ public class Bank : MonoBehaviour
         {
             Balance += depositAmount;
             playerCurrency.stat -= depositAmount;
+            InputField.text = "";
         }
-       
-
+        else
+        {
+            InvalidTransaction();
+        }
     }
     public void UpdateTransactionAmount()
     {
@@ -52,14 +62,16 @@ public class Bank : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if(collision.gameObject.tag == "Player" && Player == null)
         {
-   
+            BankInterface.gameObject.SetActive(true);
             Player = collision.gameObject;
             playerCurrency = Player.GetComponent<Currency>();
-            Balance = playerCurrency.stat;
-
             
+            playerID = gameObject.GetComponent<CalebPlayerController>().PlayerID
+            DataManager.PlayerOneBankData = new BankData(Balance, null, CalebPlayerController.PlayerID.PlayerOne);
+            Balance = DataManager.PlayerOneBankData.Balance;
         }
 
     }
@@ -68,9 +80,25 @@ public class Bank : MonoBehaviour
         if(collision.gameObject == Player)
         {
             Player = null;
+            BankInterface.gameObject.SetActive(false);
+            ResetUi();
         }
     }
-
-
-
+    private void InvalidTransaction()
+    {
+        InputField.image.color = Color.red;
+        InputField.textComponent.color = Color.white;
+    }
+    private void ValidTransaction()
+    {
+        InputField.image.color = Color.white;
+        InputField.textComponent.color = Color.black;
+        InputField.text = "";
+    }
+    private void ResetUi()
+    {
+        InputField.image.color = Color.white;
+        InputField.textComponent.color = Color.black;
+        InputField.text = "";
+    }
 }
