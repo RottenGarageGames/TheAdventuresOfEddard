@@ -1,5 +1,4 @@
-﻿using Items;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityInterfaces;
@@ -22,7 +21,7 @@ public class PlayerInventory : Inventory
 
         bool itemAdded = false;
 
-        bool matchingItemInInventory = CheckItemForMatchingID(item);
+        bool matchingItemInInventory = CheckItemForMatchingName(item);
 
         if (Items.Count < maxInventorySlots || matchingItemInInventory)
         {
@@ -31,7 +30,7 @@ public class PlayerInventory : Inventory
             if (matchingItemInInventory)
             {
                 var stackableItem = item;
-                var itemToUpdate = Items.FirstOrDefault(x => x.itemID == item.itemID && x.StackSize < x.MaxStackSize);
+                var itemToUpdate = Items.FirstOrDefault(x => x.Name == item.Name && x.StackSize < x.MaxStackSize);
 
                 //If the item to add matches the item in the inventory
                 if (itemToUpdate != null)
@@ -92,38 +91,31 @@ public class PlayerInventory : Inventory
     }
     public bool ItemCanBeAdded(ItemData item)
     {
-        if (Items.FirstOrDefault(x => x.itemID == item.itemID && x.StackSize < x.MaxStackSize) || Items.Count < maxInventorySlots)
+        if (Items.FirstOrDefault(x => x.Name == item.Name && x.StackSize < x.MaxStackSize) || Items.Count < maxInventorySlots)
         {
             return true;
         }
 
         return false;
     }
-    public void RemoveItem(int itemID)
+    public void RemoveItem(string itemName)
     {
-        var itemToRemove = Items.FirstOrDefault(x => x.itemID == itemID);
+        var itemToRemove = Items.FirstOrDefault(x => x.Name == itemName);
         Items.Remove(itemToRemove);
     }
     public void SendUIMessage(ItemData item)
     {
       _playerInventory.SetUISlot(item);
     }
-    private bool CheckItemForMatchingID(ItemData itemToAdd)
+    private bool CheckItemForMatchingName(ItemData itemToAdd)
     {
-        foreach(ItemData item in Items)
-        {
-            if(item.itemID == itemToAdd.itemID)
-            {
-                return true;
-            }
-        }
-        return false;
+        return Items.Any(x => x.Name == itemToAdd.Name);
     }
-    public void UseItem(int itemID)
+    public void UseItem(string itemName)
     {
-        var item = Items.FirstOrDefault(x => x.itemID == itemID);
+        var item = Items.FirstOrDefault(x => x.Name == itemName);
 
-       var itemToUse = Instantiate(item.itemPrefab);
+       var itemToUse = Instantiate(item.Prefab);
 
         if(itemToUse.GetComponent<IEquipable>() != null)
         {
@@ -137,7 +129,7 @@ public class PlayerInventory : Inventory
         }
         else
         {
-            Debug.Log("The item is neither a consumable or an equipable item: " + itemID.ToString());
+            Debug.Log("The item is neither a consumable or an equipable item: " + item.Name);
         }
 
     }

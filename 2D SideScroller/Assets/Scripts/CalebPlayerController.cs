@@ -75,7 +75,7 @@ public class CalebPlayerController : MonoBehaviour
         if(isInteracting)
         {
           
-           var interactable = isInteracting.gameObject.GetComponent<IInteractable>();
+           var interactable = isInteracting.gameObject.GetComponent<Interactable>();
            interactable.Interact(gameObject);
         }
     }

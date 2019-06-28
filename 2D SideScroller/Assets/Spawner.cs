@@ -13,13 +13,13 @@ public class Spawner : ScriptableObject
    //Takes a scriptable object and spawns it
     public static void SpawnItem(ItemData data, Vector3 spawnPos)
     {
-        Instantiate(data.itemPrefab, spawnPos, Quaternion.identity);
+        Instantiate(data.Prefab, spawnPos, Quaternion.identity);
     }
     public static void SpawnRandomItem(ItemList itemList, Vector3 spawnPos)
     {
         var length = itemList.itemDatas.Count;
         var itemToSpawn = itemList.itemDatas[Random.Range(0, length)];
-        Instantiate(itemToSpawn.itemPrefab, spawnPos, Quaternion.identity);
+        Instantiate(itemToSpawn.Prefab, spawnPos, Quaternion.identity);
     }
     public static void SpawnRandomItem(ItemList itemList, Vector3 spawnPos, DropRates dropRate)
     {

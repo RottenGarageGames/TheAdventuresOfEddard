@@ -1,28 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityInterfaces;
-using System;
-using UnityEngine.Events;
 
 namespace Items
 {
-
-    public class Item : MonoBehaviour, IInventoryItem, IInteractable
+    public class Item : Interactable
     {
         public ItemData Data { get; set; }
  
+        public override void Interact(GameObject player)
+        {
+            if (player.GetComponent<PlayerInventory>() != null)
+            {
+                var inventory = player.GetComponent<PlayerInventory>();
 
-        private void Start()
-        {
-        }
-        public Item()
-        {
-            
-        }
-        public void Interact(GameObject interactable)
-        {
-
+                if (inventory.ItemCanBeAdded(Data))
+                {
+                    inventory.AddItem(Data);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Inventory is full. Item can't be added");
+                }
+            }
         }
     }
 }

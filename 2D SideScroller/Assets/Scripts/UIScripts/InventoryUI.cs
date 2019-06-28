@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class InventoryUI : MonoBehaviour
                 var currentSlot = item.GetComponent<Image>();
                 var tempColor = currentSlot.color;
                 tempColor.a = 1f;
-                currentSlot.sprite = newItemData.sprite;
+                currentSlot.sprite = newItemData.Sprite;
                 currentSlot.color = tempColor;
 
                 item.GetComponent<ImageID>().itemData = newItemData;
@@ -90,14 +91,14 @@ public class InventoryUI : MonoBehaviour
         slotToUpdate.GetComponentInChildren<Text>().text = "";
 
     }
-    public void UseItem(int itemID, GameObject slotToUpdate, bool RemoveItem)
+    public void UseItem(string itemName, GameObject slotToUpdate, bool RemoveItem)
     {
-        playerInventory.UseItem(itemID);
+        playerInventory.UseItem(itemName);
 
         if (RemoveItem)
         {
             RemoveItemFromUISlot(slotToUpdate);
-            playerInventory.RemoveItem(itemID);
+            playerInventory.RemoveItem(itemName);
         }
         else
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,11 +17,11 @@ public class ImageID : MonoBehaviour
 
         if (itemData.StackSize <= 0)
         {
-            inventoryUI.UseItem(itemData.itemID, gameObject, true);
+            inventoryUI.UseItem(itemData.Name, gameObject, true);
         }
         else
         {
-            inventoryUI.UseItem(itemData.itemID, gameObject, false);
+            inventoryUI.UseItem(itemData.Name, gameObject, false);
         }
 
 

@@ -1,46 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 [System.Serializable]
 [CreateAssetMenu(menuName = "Items/New Item", fileName = "StackableItemName.asset")]
 public class ItemData : ScriptableObject
 {
-    public int itemID;
-    public string itemName;
-    public string itemCategory;
-    public int basePrice;
-    public int sellValue;
+    public enum ItemCategory
+    {
+        Potion,
+        Weapon
+    };
+
+    public enum ItemRarity
+    {
+        Common,
+        Uncommon,
+        Rare,
+        Epic,
+        Legendary
+    };
+
+    public string Name;
+    public ItemCategory[] Category;
+    public int Price;
+    public int Value;
     public int StackSize;
     public int MaxStackSize;
-    public Sprite sprite;
-    public string prefabPath;
-    public GameObject itemPrefab;
-    public Rarity rarity;
+    public Sprite Sprite;
+    public GameObject Prefab;
+    public ItemRarity Rarity;
 
     public ItemData(ItemData itemData)
     {
-        itemID = itemData.itemID;
-        itemName = itemData.itemName;
-        itemCategory = itemData.itemCategory;
-        basePrice = itemData.basePrice;
-        sellValue = itemData.sellValue;
+        Name = itemData.Name;
+        Category = itemData.Category;
+        Price = itemData.Price;
+        Value = itemData.Value;
         StackSize = itemData.StackSize;
         MaxStackSize = itemData.MaxStackSize;
-        sprite = itemData.sprite;
-        prefabPath = itemData.prefabPath;
-        itemPrefab = itemData.itemPrefab;
-        rarity = itemData.rarity;
+        Sprite = itemData.Sprite;
+        Prefab = itemData.Prefab;
+        Rarity = itemData.Rarity;
     }
 
-}
-
-
-public enum Rarity
-{
-    Common,
-    Uncommon,
-    Rare,
-    Epic,
-    Legendary
+    
+    //EditorGUILayout.MaskField("Player Flags", flags, options);
 }

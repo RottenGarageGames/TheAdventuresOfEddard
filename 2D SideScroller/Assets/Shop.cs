@@ -25,15 +25,15 @@ public class Shop : Inventory
         foreach(var slot in ShopSlots)
         {
             var randomItem = itemDatabase.itemDatas[Random.Range(0, length)];
-            Debug.Log(randomItem.itemName.ToString());
+            Debug.Log(randomItem.Name.ToString());
             var cloneItem = new ItemData(randomItem);
-            Debug.Log(cloneItem.itemName.ToString());
+            Debug.Log(cloneItem.Name.ToString());
             Items.Add(cloneItem);
             var slotImageId = slot.GetComponentInChildren<ImageID>();
             var slotText = slot.GetComponentInChildren<Text>();
-            slot.gameObject.GetComponent<Image>().sprite = cloneItem.sprite;
+            slot.gameObject.GetComponent<Image>().sprite = cloneItem.Sprite;
             slotImageId.itemData = cloneItem;
-            slotText.text = cloneItem.itemName.ToString();
+            slotText.text = cloneItem.Name.ToString();
 
 
             var priceText = slot.GetComponentsInChildren<Text>();
@@ -42,7 +42,7 @@ public class Shop : Inventory
             {
                 if(textComponent.name == "Price")
                 {
-                    textComponent.text = "Price: " + cloneItem.basePrice.ToString();
+                    textComponent.text = "Price: " + cloneItem.Price.ToString();
                 }
             }
         }
@@ -72,7 +72,7 @@ public class Shop : Inventory
     }
     public void ProcessTransaction(ItemData item)
     {
-        if(ValidTransaction(item.basePrice))
+        if(ValidTransaction(item.Price))
         {
             //Need to load item
            player.GetComponent<PlayerInventory>().AddItem(item);

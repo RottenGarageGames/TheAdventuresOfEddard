@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1999d7a3b2ecd824895d10b2bd3c47a4, type: 3}
-  m_Name: StackableItemName
+  m_Name: Burger King
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemName: 
-  itemCategory: 
-  basePrice: 0
-  sellValue: 0
+  Name: Burger King
+  Category: 0000000001000000
+  Price: 0
+  Value: 0
   StackSize: 0
   MaxStackSize: 0
-  sprite: {fileID: 0}
-  prefabPath: 
-  itemPrefab: {fileID: 0}
-  rarity: 2
+  Sprite: {fileID: 0}
+  Prefab: {fileID: 0}
+  Rarity: 4
