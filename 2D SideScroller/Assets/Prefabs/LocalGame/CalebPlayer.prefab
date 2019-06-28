@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 3882026833485086547}
   m_Layer: 9
   m_Name: GroundCheck
-  m_TagString: ground
+  m_TagString: Ground
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -946,13 +946,11 @@ GameObject:
   - component: {fileID: 3882026833361749044}
   - component: {fileID: 3882026834077255090}
   - component: {fileID: 3882026834077255091}
-  - component: {fileID: 3882026834077255093}
   - component: {fileID: 3882026834077255095}
   - component: {fileID: 3882026834077255096}
   - component: {fileID: 6153557535314163063}
   - component: {fileID: 3882026834077255097}
   - component: {fileID: 3882026834077255098}
-  - component: {fileID: 3882026834077255099}
   - component: {fileID: 1759623562520012194}
   - component: {fileID: 8900016037331934968}
   m_Layer: 0
@@ -1045,32 +1043,12 @@ Rigidbody2D:
   m_Mass: 4.65
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 8.05
-  m_Material: {fileID: 0}
+  m_GravityScale: 8
+  m_Material: {fileID: 6200000, guid: fa1452f3fade8cc44a6f9cf17202f780, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3882026834077255093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3882026834077255101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b526ff2ccd5a1674b82542750a66c0c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 651192128037793357, guid: 2961c1caef2120f43b96d5da795375bd,
-    type: 3}
-  spawnPoint: {fileID: 3882026832131361780}
-  timeBetweenShots: 1.49
-  shotTimer: 0
-  attackDuration: 10
-  keyCode: 102
-  Animator: {fileID: 0}
 --- !u!95 &3882026834077255095
 Animator:
   serializedVersion: 3
@@ -1117,6 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234907c38b45d98408b43819bce4b16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Items: []
 --- !u!61 &3882026834077255097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1159,31 +1138,6 @@ CircleCollider2D:
   m_Offset: {x: -1.0858974, y: -5.9978676}
   serializedVersion: 2
   m_Radius: 0.78560257
---- !u!114 &3882026834077255099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3882026834077255101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742060cae180e3b45b66f5586a8f1f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthIcon: {fileID: 0}
-  shieldIcon: {fileID: 0}
-  health: 0
-  shieldHealth: 0
-  maxHealth: 0
-  maxShield: 0
-  healthIcons:
-  - {fileID: 3882026833910978407}
-  - {fileID: 3882026833236008077}
-  - {fileID: 3882026832426480837}
-  - {fileID: 3882026832833364524}
-  - {fileID: 3882026833591293336}
-  playerCanvas: {fileID: 3882026832372627181}
 --- !u!114 &1759623562520012194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,15 +1168,17 @@ MonoBehaviour:
   RunSpeed: 18
   JumpForce: 10
   PlayerStats:
-    Health: 0
-    MaxHealth: 0
+    Health: 5
+    MaxHealth: 5
     Stamina: 0
     MaxStamina: 0
   playerWheel: {fileID: 9131771716451647819}
+  PlayerHealthScript: {fileID: 0}
+  Running: 0
   GroundCheck: {fileID: 3882026833485086547}
   Ground:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8192
   PlayerCurrentFlipValue: 0
 --- !u!1 &3882026834134482457
 GameObject:
