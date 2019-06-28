@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Bank : MonoBehaviour
 
 {
-    public int Balance;
+    public static int Balance;
     public GameObject Player;
     public Text BalanceDisplay;
     private Currency playerCurrency;
@@ -34,6 +34,7 @@ public class Bank : MonoBehaviour
         {
             Balance -= withdrawalAmount;
             playerCurrency.stat += withdrawalAmount;
+            InputField.text = "";
             ValidTransaction();
         }
         else
@@ -50,6 +51,7 @@ public class Bank : MonoBehaviour
             Balance += depositAmount;
             playerCurrency.stat -= depositAmount;
             InputField.text = "";
+            ValidTransaction();
         }
         else
         {
