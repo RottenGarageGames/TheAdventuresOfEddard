@@ -13,6 +13,7 @@ public class Chest : MonoBehaviour, IInteractable
 
     public void Interact(GameObject interactingObject)
     {
+        Debug.Log("Fligging is called.");
         if (Unused)
         {
             Unused = false;        

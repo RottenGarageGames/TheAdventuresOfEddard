@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityInterfaces;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CalebPlayerController : MonoBehaviour
@@ -23,8 +24,6 @@ public class CalebPlayerController : MonoBehaviour
 
     public bool Running;
     public bool IsGrounded { get; private set; }
-    public Transform GroundCheck;
-    public LayerMask Ground;
     public float PlayerCurrentFlipValue;
     public PlayerID ID;
 
@@ -36,7 +35,8 @@ public class CalebPlayerController : MonoBehaviour
     
     void Update()
     {
-        IsGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.3f, Ground);
+        IsGrounded = Physics2D.OverlapCircle(transform.position, 5.4f, LayerMask.GetMask("Ground"));
+
 
         //if(Input.GetKeyDown(KeyCode.L))
         //{
@@ -70,7 +70,14 @@ public class CalebPlayerController : MonoBehaviour
 
     public void Interact()
     {
+      var isInteracting = Physics2D.OverlapCircle(transform.position, 5.4f, LayerMask.GetMask("Interactable"));
 
+        if(isInteracting)
+        {
+          
+           var interactable = isInteracting.gameObject.GetComponent<IInteractable>();
+           interactable.Interact(gameObject);
+        }
     }
 
     private void UpdateDirection(PlayerDirection playerDirection)
