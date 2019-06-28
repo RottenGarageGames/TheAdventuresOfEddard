@@ -20,20 +20,19 @@ public class Interact : MonoBehaviour
             {
 
                 // Take the object out of scene
-                interactable.SetActive(false);
 
                 // Add the item to player inventory if the interacting component has an inventory component
                 if (gameObject.GetComponent<PlayerInventory>() != null)
                 {
                     var itemComponent = collider.gameObject.GetComponent<Item>();
-                    if (gameObject.GetComponent<PlayerInventory>().AddItem(itemComponent.Data))
-                    {
-                        //The item was added to the inventory
+                    if (gameObject.GetComponent<PlayerInventory>().ItemCanBeAdded(itemComponent.Data))
+                    { 
+                        gameObject.GetComponent<PlayerInventory>().AddItem(itemComponent.Data);           
+                        Destroy(gameObject);
                     }
                     else
                     {
-                        //Place the item back in the scene
-                        //interactable.SetActive(true);
+                        Debug.Log("Inventory is full. Item can't be added");
                     }
                 }
 

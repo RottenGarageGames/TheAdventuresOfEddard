@@ -11,8 +11,8 @@ ScriptedImporter:
     2800000: Tree Villian
     21200000: Tree Villian_GO/Tree Villian_GO/Layer 1/SpriteRenderer
     21200002: Tree Villian_GO/Tree Villian_GO/Layer 2/SpriteRenderer
-    21300000: Layer 2
-    21300002: Layer 1
+    21300004: 980df94d3f9194efc995e1c7a737a1ae
+    21300006: 3db07733f0efc461fa61f35eedaf5eaf
     100100000: Tree Villian_GO
   externalObjects: {}
   userData: 
@@ -182,5 +182,6 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
   boneGOs: []
-  firstCreate: 0
   generateGOHierarchy: 0
+  textureAssetName: Tree Villian
+  prefabAssetName: Tree Villian_GO

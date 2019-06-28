@@ -12,6 +12,11 @@ namespace Misc
     {
         public static Dictionary<InputAction, InputButton> ControllerBindings { get; set; } = null;
         public static Dictionary<InputAction, KeyCode> KeyboardBindings { get; set; } = null;
+        public static BankData PlayerOneBankData { get; set; } = null;
+        public static BankData PlayerTwoBankData { get; set; } = null;
+        public static BankData PlayerThreeBankData { get; set; } = null;
+        public static BankData PlayerFourBankData { get; set; } = null;
+
 
         public static void Load()
         {
@@ -41,7 +46,12 @@ namespace Misc
 
             string[] data =
             {
-                JsonConvert.SerializeObject(KeyboardBindings)
+                JsonConvert.SerializeObject(KeyboardBindings),
+                JsonConvert.SerializeObject(ControllerBindings),
+                JsonConvert.SerializeObject(PlayerOneBankData),
+                JsonConvert.SerializeObject(PlayerTwoBankData),
+                JsonConvert.SerializeObject(PlayerThreeBankData),
+                JsonConvert.SerializeObject(PlayerFourBankData)
             };
 
             File.WriteAllLines(filePath, data);

@@ -21,6 +21,10 @@ public class Spawner : ScriptableObject
         var itemToSpawn = itemList.itemDatas[Random.Range(0, length)];
         Instantiate(itemToSpawn.itemPrefab, spawnPos, Quaternion.identity);
     }
+    public static void SpawnRandomItem(ItemList itemList, Vector3 spawnPos, DropRates dropRate)
+    {
+
+    }
     //Will take an object of type MonsterData
     public static void SpawnMonster()
     {

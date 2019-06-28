@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CalebPlayerController : MonoBehaviour
 {
     public enum PlayerDirection { Left, Right };
+    public enum PlayerID {PlayerOne, PlayerTwo, PlayerThree, PlayerFour };
 
     public Rigidbody2D RigidBody { get; private set; }
 
@@ -25,6 +26,7 @@ public class CalebPlayerController : MonoBehaviour
     public Transform GroundCheck;
     public LayerMask Ground;
     public float PlayerCurrentFlipValue;
+    public PlayerID ID;
 
     void Start()
     {
