@@ -16,13 +16,16 @@ public class PlayerInventory : Inventory
         _playerInventory = gameObject.GetComponent<InventoryUI>();
     }
     
-    public bool AddItem(ItemData item)
+    public bool AddItem(ItemData newItem)
     {
+        var item = new ItemData(newItem);
+
         bool itemAdded = false;
 
-        if (Items.Count < maxInventorySlots)
+        bool matchingItemInInventory = CheckItemForMatchingID(item);
+
+        if (Items.Count < maxInventorySlots || matchingItemInInventory)
         {
-            bool matchingItemInInventory = CheckItemForMatchingID(item);
 
             //If the item implements the stackable interface and also matches the id of an item in the inventory
             if (matchingItemInInventory)
@@ -30,25 +33,24 @@ public class PlayerInventory : Inventory
                 var stackableItem = item;
                 var itemToUpdate = Items.FirstOrDefault(x => x.itemID == item.itemID && x.StackSize < x.MaxStackSize);
 
-                var itemToUpdateAsStackable = itemToUpdate;
-
                 //If the item to add matches the item in the inventory
                 if (itemToUpdate != null)
                 {
-                    var newStackSize = itemToUpdateAsStackable.StackSize + stackableItem.StackSize;
-                    var amountToFillCurrentStack = stackableItem.MaxStackSize - stackableItem.StackSize;
+                    var newStackSize = itemToUpdate.StackSize + stackableItem.StackSize;
 
-                    if (newStackSize > itemToUpdateAsStackable.MaxStackSize)
+                    if (newStackSize > itemToUpdate.MaxStackSize)
                     {
-                        var overflowSize = newStackSize - itemToUpdateAsStackable.MaxStackSize;
+                        var overflowSize = newStackSize - itemToUpdate.MaxStackSize;
 
                         //Max out item stack in inventory
-                        _playerInventory.SetUIText(item.itemID, amountToFillCurrentStack);
-                        itemToUpdate.StackSize = itemToUpdateAsStackable.MaxStackSize;
+                        itemToUpdate.StackSize = itemToUpdate.MaxStackSize;
+                        _playerInventory.SetUIText();
+
 
                         //Add the overflow to the new stack in the next slot
-                        stackableItem.StackSize = overflowSize;
-                        AddNonStackableItem(item);
+                        var overFlowItem = new ItemData(itemToUpdate);
+                        overFlowItem.StackSize = overflowSize;
+                        AddItem(overFlowItem);
                         //_playerInventory.SetStackableUISlot(item.sprite, stackableItem.StackSize, item.itemID, stackableItem.MaxStackSize);
 
 
@@ -56,20 +58,27 @@ public class PlayerInventory : Inventory
                     }
                     else
                     {
-                        _playerInventory.SetUIText(item.itemID, stackableItem.StackSize);
                         itemToUpdate.StackSize += stackableItem.StackSize;
+                        _playerInventory.SetUIText();
                         itemAdded = true;
                     }
                 }
                 else
                 {
-                    //The stackable item to add is not found in the inventory
-                    AddNonStackableItem(item);
+                    if (Items.Count == maxInventorySlots)
+                    {
+                        Debug.Log("The inventory is full. The item could not be added");
+                        Spawner.SpawnItem(item, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y));
+                    }
+                    else
+                    {
+                        AddNonStackableItem(item);
+                    }
                 }
             }
             else
             {
-                //The item is not stackable, add it to the inventory
+                //There is not item that can be updated or added to
                 AddNonStackableItem(item);
             }
         }
@@ -81,6 +90,15 @@ public class PlayerInventory : Inventory
         SendUIMessage(item);
         return true;
     }
+    public bool ItemCanBeAdded(ItemData item)
+    {
+        if (Items.FirstOrDefault(x => x.itemID == item.itemID && x.StackSize < x.MaxStackSize) || Items.Count < maxInventorySlots)
+        {
+            return true;
+        }
+
+        return false;
+    }
     public void RemoveItem(int itemID)
     {
         var itemToRemove = Items.FirstOrDefault(x => x.itemID == itemID);
@@ -88,15 +106,7 @@ public class PlayerInventory : Inventory
     }
     public void SendUIMessage(ItemData item)
     {
-        var stackable = item;
-        if (item.MaxStackSize == 1)
-        {
-            _playerInventory.SetUISlot(item.sprite, 1, item.itemID);
-        }
-        else
-        {
-            _playerInventory.SetStackableUISlot(item.sprite, stackable.StackSize, item.itemID, stackable.MaxStackSize);
-        }
+      _playerInventory.SetUISlot(item);
     }
     private bool CheckItemForMatchingID(ItemData itemToAdd)
     {

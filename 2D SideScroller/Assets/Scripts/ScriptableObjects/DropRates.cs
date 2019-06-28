@@ -6,10 +6,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/Drop Rate", fileName = "DropRateName.asset")]
 public class DropRates : ScriptableObject
 {
-    public float CurrencyDropRate;
     public float CommonDropRate;
     public float UncommonDropRate;
     public float RareDropRate;
     public float EpicDropRate;
-    public float MultipleItemDropRate;
+
+    public bool ChanceForMultipleItems;
+    public float OneItemDropRate;
+    public float TwoItemDropRate;
+    public float ThreeItemDropRate;
+    public float FourItemDromRate;
+
+    public bool ChanceForCurrencyDrop;
+    public float CurrencyDropChance;
 }

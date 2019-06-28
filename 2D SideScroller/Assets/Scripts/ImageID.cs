@@ -5,31 +5,29 @@ using UnityEngine.UI;
 
 public class ImageID : MonoBehaviour
 {
-    public int itemID;
-    public int maxStack;
-    public int currentStack;
     public Shop shop;
     public InventoryUI inventoryUI;
     public Image ParentImage;
+    public ItemData itemData;
 
     public void UseItem()
     {
-        currentStack--;
+        itemData.StackSize--;
 
-        if (currentStack <= 0)
+        if (itemData.StackSize <= 0)
         {
-            inventoryUI.UseItem(itemID, gameObject, true);
+            inventoryUI.UseItem(itemData.itemID, gameObject, true);
         }
         else
         {
-            inventoryUI.UseItem(itemID, gameObject, false);
+            inventoryUI.UseItem(itemData.itemID, gameObject, false);
         }
 
 
     }
     public void BuyItem()
     {
-        shop.ProcessTransaction(itemID);
+        shop.ProcessTransaction(itemData);
         Debug.Log("Buy Item");
     }
 }

@@ -18,9 +18,23 @@ public class ItemData : ScriptableObject
     public GameObject itemPrefab;
     public Rarity rarity;
 
-
+    public ItemData(ItemData itemData)
+    {
+        itemID = itemData.itemID;
+        itemName = itemData.itemName;
+        itemCategory = itemData.itemCategory;
+        basePrice = itemData.basePrice;
+        sellValue = itemData.sellValue;
+        StackSize = itemData.StackSize;
+        MaxStackSize = itemData.MaxStackSize;
+        sprite = itemData.sprite;
+        prefabPath = itemData.prefabPath;
+        itemPrefab = itemData.itemPrefab;
+        rarity = itemData.rarity;
+    }
 
 }
+
 
 public enum Rarity
 {
