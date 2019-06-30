@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1999d7a3b2ecd824895d10b2bd3c47a4, type: 3}
-  m_Name: Max Shield Potion
+  m_Name: StackableItemName
   m_EditorClassIdentifier: 
-  Name: Max Shield Potion
-  Category: 00000000
-  Price: 50
-  Value: 50
-  StackSize: 1
-  MaxStackSize: 5
-  Sprite: {fileID: 21300000, guid: e1ca6c912cffa45ebae9b03caed0d168, type: 3}
-  Prefab: {fileID: 2875899318731879928, guid: 6efc4212aff43a84dbdd5d27855e24b5, type: 3}
+  Name: 
+  Category: 
+  Price: 0
+  Value: 0
+  StackSize: 0
+  MaxStackSize: 0
+  Sprite: {fileID: 0}
+  Prefab: {fileID: 0}
   Rarity: 0

@@ -10,6 +10,7 @@ TagManager:
   - LightSpawn
   - Wall
   - Ground
+  - ground
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Player
   - Ground
   - Wall
-  - 
+  - Interactable
   - 
   - 
   - 

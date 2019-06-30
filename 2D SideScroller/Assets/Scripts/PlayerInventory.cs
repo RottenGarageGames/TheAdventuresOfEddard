@@ -111,8 +111,9 @@ public class PlayerInventory : Inventory
     {
         return Items.Any(x => x.Name == itemToAdd.Name);
     }
-    public void UseItem(string itemName)
+    public bool UseItem(string itemName)
     {
+        bool itemUsed = false;
         var item = Items.FirstOrDefault(x => x.Name == itemName);
 
        var itemToUse = Instantiate(item.Prefab);
@@ -121,16 +122,25 @@ public class PlayerInventory : Inventory
         {
             var equipableItem = itemToUse.GetComponent<IEquipable>();
             equipableItem.Equip();
+            itemUsed = true;
         }
         else if(itemToUse.GetComponent<IConsumable>() != null)
         {
             var consumableItem = itemToUse.GetComponent<IConsumable>();
-            consumableItem.Consume(gameObject);
+            itemUsed = consumableItem.Consume(gameObject);
+            
         }
         else
         {
             Debug.Log("The item is neither a consumable or an equipable item: " + item.Name);
+            itemUsed = false;
         }
 
+        if(itemUsed)
+        {
+            item.StackSize--;
+        }
+
+        return itemUsed;
     }
 }

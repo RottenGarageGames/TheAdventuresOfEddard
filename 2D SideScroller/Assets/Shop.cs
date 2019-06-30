@@ -58,28 +58,29 @@ public class Shop : Inventory
             player = collision.gameObject;
         }
     }
-    public bool ValidTransaction(int itemCost)
+    public bool ValidTransaction(ItemData item)
     {
-        if(player.GetComponent<Currency>().stat >= itemCost)
+        if(player.GetComponent<Currency>().stat >= item.Price)
         {
-            player.GetComponent<Currency>().DecreaseStat(itemCost);
-            return true;
+            if(player.GetComponent<PlayerInventory>().ItemCanBeAdded(item))
+            {
+                player.GetComponent<Currency>().DecreaseStat(item.Price);
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
     public void ProcessTransaction(ItemData item)
     {
-        if(ValidTransaction(item.Price))
+        if(ValidTransaction(item))
         {
             //Need to load item
            player.GetComponent<PlayerInventory>().AddItem(item);
         }
         else
         {
-            Debug.Log("Not enough funds.");
+            Debug.Log("Not enough funds or the user inventory is full");
         }
     }
     public void IncreaseShopGold(int amount)

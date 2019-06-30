@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityInterfaces;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class CalebPlayerController : MonoBehaviour
+public class CalebPlayerController : MonoBehaviour, IDamagable
 {
     public enum PlayerDirection { Left, Right };
     public enum PlayerID {PlayerOne, PlayerTwo, PlayerThree, PlayerFour };

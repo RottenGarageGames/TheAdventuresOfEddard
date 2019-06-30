@@ -13,16 +13,16 @@ public class ImageID : MonoBehaviour
 
     public void UseItem()
     {
-        itemData.StackSize--;
+        //itemData.StackSize--;
 
-        if (itemData.StackSize <= 0)
-        {
-            inventoryUI.UseItem(itemData.Name, gameObject, true);
-        }
-        else
-        {
-            inventoryUI.UseItem(itemData.Name, gameObject, false);
-        }
+        //if (itemData.StackSize <= 0)
+        //{
+            inventoryUI.UseItem(itemData.Name, gameObject);
+        //}
+        //else
+        //{
+        //    inventoryUI.UseItem(itemData.Name, gameObject, false);
+        //}
 
 
     }

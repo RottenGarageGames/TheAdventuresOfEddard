@@ -6,6 +6,6 @@ namespace UnityInterfaces
 {
     public interface IConsumable
     {
-        void Consume(GameObject playerAttachedToInventory);
+        bool Consume(GameObject playerAttachedToInventory);
     }
 }

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable<T>
+public interface IDamagable
 {
-    T health { get; set; }
-    void TakeDamage(T damageAmount);
+    void Damage(int damageAmount);
 }
