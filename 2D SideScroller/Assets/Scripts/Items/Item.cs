@@ -13,8 +13,7 @@ namespace Items
         public Type Type;
         public int Price;
         public int Value;
-        public bool CanStack;
-        public int Count;
+        public int MaxCount = 1;
         public Sprite Sprite;
         public Rarity Rarity;
 
@@ -22,17 +21,10 @@ namespace Items
         {
             if (player.GetComponent<PlayerInventory>() != null)
             {
-                var inventory = player.GetComponent<PlayerInventory>();
+                var inventory = player.GetComponent<PlayerWheel>();
 
-                if (inventory.AddItem(this))
-                {
-                    inventory.AddItem(Data);
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    Debug.Log("Inventory is full. Item can't be added");
-                }
+                inventory.AddItem(this);
+                Destroy(gameObject);
             }
         }
 

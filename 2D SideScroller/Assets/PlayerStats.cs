@@ -8,4 +8,21 @@ public class PlayerStats
 
     public int Stamina;
     public int MaxStamina;
+
+    public int AddHealth(int healPoints)
+    {
+        var pointsHealed = healPoints;
+
+        if(Health + healPoints > MaxHealth)
+        {
+            pointsHealed = MaxHealth - Health;
+            Health = MaxHealth;
+        }
+        else
+        {
+            Health += healPoints;
+        }
+
+        return pointsHealed;
+    }
 }

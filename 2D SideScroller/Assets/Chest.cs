@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Items;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityInterfaces;
 
 public class Chest : Interactable
@@ -7,11 +9,12 @@ public class Chest : Interactable
 
     public override void Interact(GameObject interactingObject)
     {
-        Debug.Log("Fligging is called.");
         if (Unused)
         {
-            Unused = false;        
-            //Spawner.SpawnRandomItem(chestDropList, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y));
+            Unused = false;
+            var wheel = interactingObject.GetComponent<PlayerWheel>();
+            //wheel.AddItem(new HealthPotion());
+            Spawner.SpawnRandomItem(new List<GameObject> { Resources.Load("HealthPotion") as GameObject }, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y));
         }
 
         Destroy(gameObject);

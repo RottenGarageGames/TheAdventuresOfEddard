@@ -1,20 +1,21 @@
-﻿using System.Collections;
+﻿using Items;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : ScriptableObject
 {    
    //Takes a scriptable object and spawns it
-    public static void SpawnItem(ItemData data, Vector3 spawnPos)
+    public static void SpawnItem(Item data, Vector3 spawnPos)
     {
-        Instantiate(data.Prefab, spawnPos, Quaternion.identity);
+        //Instantiate(data.Prefab, spawnPos, Quaternion.identity);
     }
 
-    public static void SpawnRandomItem(List<ItemData> items, Vector3 spawnPos)
+    public static void SpawnRandomItem(List<GameObject> items, Vector3 spawnPos)
     {
         var length = items.Count;
         var itemToSpawn = items[Random.Range(0, length)];
-        Instantiate(itemToSpawn.Prefab, spawnPos, Quaternion.identity);
+        Instantiate(itemToSpawn, spawnPos, Quaternion.identity);
     }
 
     //Will take an object of type MonsterData

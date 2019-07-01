@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Items;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class Shop : Inventory
     public int ShopGold;
     public Text ShopGoldText;
 
-    public List<ItemData> items;
+    public List<Item> items;
 
     public GameObject player;
 
@@ -22,13 +23,11 @@ public class Shop : Inventory
         {
             var randomItem = items[Random.Range(0, length)];
             Debug.Log(randomItem.Name.ToString());
-            var cloneItem = new ItemData(randomItem);
+            var cloneItem = randomItem;
             Debug.Log(cloneItem.Name.ToString());
             Items.Add(cloneItem);
-            var slotImageId = slot.GetComponentInChildren<ImageID>();
             var slotText = slot.GetComponentInChildren<Text>();
             slot.gameObject.GetComponent<Image>().sprite = cloneItem.Sprite;
-            slotImageId.itemData = cloneItem;
             slotText.text = cloneItem.Name.ToString();
 
 
@@ -66,12 +65,12 @@ public class Shop : Inventory
             return false;
         }
     }
-    public void ProcessTransaction(ItemData item)
+    public void ProcessTransaction(Item item)
     {
         if(ValidTransaction(item.Price))
         {
             //Need to load item
-           player.GetComponent<PlayerInventory>().AddItem(item);
+           player.GetComponent<PlayerWheel>().AddItem(item);
         }
         else
         {
