@@ -37,30 +37,6 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
-    //public void SetStackableUISlot(Sprite itemSprite, int count, int imageID, int maxStack)
-    //{
-    //    foreach (GameObject item in inventorySlots)
-    //    {
-    //        if (item.GetComponent<Image>().sprite == null)
-    //        {
-    //            var currentSlot = item.GetComponent<Image>();
-    //            var tempColor = currentSlot.color;
-    //            tempColor.a = 1f;
-    //            currentSlot.sprite = itemSprite;
-    //            currentSlot.color = tempColor;
-
-    //            item.GetComponent<ImageID>().itemID = imageID;
-    //            item.GetComponent<ImageID>().maxStack = maxStack;
-    //            item.GetComponent<ImageID>().currentStack += count;
-
-    //            if (count > 1)
-    //            {
-    //                item.GetComponentInChildren<Text>().text = count.ToString();
-    //            }
-    //            break;
-    //        }
-    //    }
-    //}
     public void SetUIText()
     {
        foreach(var slot in inventorySlots)
@@ -121,5 +97,9 @@ public class InventoryUI : MonoBehaviour
     public void BuyItem(GameObject itemToAdd)
     {
 
+    }
+    public void CraftItem(ItemData itemData)
+    {
+        playerInventory.Craft(itemData);
     }
 }

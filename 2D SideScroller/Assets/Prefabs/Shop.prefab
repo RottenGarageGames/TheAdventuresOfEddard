@@ -1546,7 +1546,7 @@ GameObject:
   - component: {fileID: 5009119663271076699}
   - component: {fileID: 5009119663271076698}
   - component: {fileID: 5009119663271076697}
-  - component: {fileID: 5009119663271076696}
+  - component: {fileID: 1330536984}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -1652,7 +1652,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5009119663271076696}
+      - m_Target: {fileID: 1330536984}
         m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
@@ -1665,7 +1665,7 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &5009119663271076696
+--- !u!114 &1330536984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1674,13 +1674,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5009119663271076702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc86e3e68ee7494184415279ee81772, type: 3}
+  m_Script: {fileID: 11500000, guid: dc11786e6d1b60b4ababc01928c56ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop: {fileID: 5009119662128333696}
   inventoryUI: {fileID: 0}
-  ParentImage: {fileID: 5009119663108583144}
   itemData: {fileID: 0}
+  shop: {fileID: 5009119662128333696}
 --- !u!1 &5009119663320529965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,7 +1692,7 @@ GameObject:
   - component: {fileID: 5009119663320529962}
   - component: {fileID: 5009119663320529961}
   - component: {fileID: 5009119663320529960}
-  - component: {fileID: 5009119663320529967}
+  - component: {fileID: 1558464051}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -1799,7 +1798,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5009119663320529967}
+      - m_Target: {fileID: 1558464051}
         m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
@@ -1812,7 +1811,7 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &5009119663320529967
+--- !u!114 &1558464051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1821,13 +1820,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5009119663320529965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc86e3e68ee7494184415279ee81772, type: 3}
+  m_Script: {fileID: 11500000, guid: dc11786e6d1b60b4ababc01928c56ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop: {fileID: 5009119662128333696}
   inventoryUI: {fileID: 0}
-  ParentImage: {fileID: 5009119662824182915}
   itemData: {fileID: 0}
+  shop: {fileID: 5009119662128333696}
 --- !u!1 &5009119663353978429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1838,7 @@ GameObject:
   - component: {fileID: 5009119663353978426}
   - component: {fileID: 5009119663353978425}
   - component: {fileID: 5009119663353978424}
-  - component: {fileID: 5009119663353978431}
+  - component: {fileID: 153534036}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -1946,7 +1944,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5009119663353978431}
+      - m_Target: {fileID: 153534036}
         m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
@@ -1959,7 +1957,7 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &5009119663353978431
+--- !u!114 &153534036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1968,13 +1966,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5009119663353978429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc86e3e68ee7494184415279ee81772, type: 3}
+  m_Script: {fileID: 11500000, guid: dc11786e6d1b60b4ababc01928c56ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop: {fileID: 5009119662128333696}
   inventoryUI: {fileID: 0}
-  ParentImage: {fileID: 5009119661974761536}
   itemData: {fileID: 0}
+  shop: {fileID: 5009119662128333696}
 --- !u!1 &5009119663392795378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,7 +2501,7 @@ GameObject:
   - component: {fileID: 5009119663623486188}
   - component: {fileID: 5009119663623486179}
   - component: {fileID: 5009119663623486178}
-  - component: {fileID: 5009119663623486177}
+  - component: {fileID: 505488997}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -2610,7 +2607,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5009119663623486177}
+      - m_Target: {fileID: 505488997}
         m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
@@ -2623,7 +2620,7 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &5009119663623486177
+--- !u!114 &505488997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2632,13 +2629,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5009119663623486183}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc86e3e68ee7494184415279ee81772, type: 3}
+  m_Script: {fileID: 11500000, guid: dc11786e6d1b60b4ababc01928c56ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop: {fileID: 5009119662128333696}
   inventoryUI: {fileID: 0}
-  ParentImage: {fileID: 5009119663908906297}
   itemData: {fileID: 0}
+  shop: {fileID: 5009119662128333696}
 --- !u!1 &5009119663631048707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,7 +2726,7 @@ GameObject:
   - component: {fileID: 5009119663642304350}
   - component: {fileID: 5009119663642304349}
   - component: {fileID: 5009119663642304348}
-  - component: {fileID: 5009119663642304339}
+  - component: {fileID: 305093619}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -2836,7 +2832,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5009119663642304339}
+      - m_Target: {fileID: 305093619}
         m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
@@ -2849,7 +2845,7 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &5009119663642304339
+--- !u!114 &305093619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2858,13 +2854,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5009119663642304337}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc86e3e68ee7494184415279ee81772, type: 3}
+  m_Script: {fileID: 11500000, guid: dc11786e6d1b60b4ababc01928c56ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop: {fileID: 5009119662128333696}
   inventoryUI: {fileID: 0}
-  ParentImage: {fileID: 5009119663065176133}
   itemData: {fileID: 0}
+  shop: {fileID: 5009119662128333696}
 --- !u!1 &5009119663697441906
 GameObject:
   m_ObjectHideFlags: 0

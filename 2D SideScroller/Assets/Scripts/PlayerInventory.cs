@@ -111,6 +111,17 @@ public class PlayerInventory : Inventory
     {
         return Items.Any(x => x.Name == itemToAdd.Name);
     }
+    private int GetItemStackCount(ItemData item)
+    {
+      var matchingItems =  Items.Where(x => x.ID == item.ID);
+        int count = 0;
+
+        foreach(var data in matchingItems)
+        {
+            count += data.StackSize;
+        }
+        return count;
+    }
     public bool UseItem(string itemName)
     {
         bool itemUsed = false;
@@ -142,5 +153,61 @@ public class PlayerInventory : Inventory
         }
 
         return itemUsed;
+    }
+    public bool CheckForRequiredIngredients(List<CraftingIngredient> ingredients)
+    {
+        foreach(var ingredient in ingredients)
+        {
+           if(!(GetItemStackCount(ingredient.IngredientItem) >= ingredient.RequiredAmount))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public void DecreaseItemStackSize(ItemData itemData, int decreaseAmount)
+    {
+       var matchingItems = Items.Where(x => x.ID == itemData.ID);
+       var smallestStack = matchingItems.Aggregate((currMin, x) => (currMin == null || (x.StackSize) < currMin.StackSize ? x : currMin));
+       Debug.Log("Smallest Stack " + smallestStack.StackSize);
+
+        if(smallestStack.StackSize > decreaseAmount)
+        {
+            smallestStack.StackSize -= decreaseAmount;
+        }
+        else if(smallestStack.StackSize < decreaseAmount)
+        {
+            var remainder = decreaseAmount - smallestStack.StackSize;
+            smallestStack.StackSize = 0;
+            Items.Remove(smallestStack);
+            DecreaseItemStackSize(itemData, remainder);
+        }
+        else
+        {
+            smallestStack.StackSize = 0;
+            Items.Remove(smallestStack);
+        }
+
+    }
+    public void RemoveIngredientsFromInventory(List<CraftingIngredient> craftingIngredients)
+    {
+        foreach(var ingredient in craftingIngredients)
+        {
+                DecreaseItemStackSize(ingredient.IngredientItem, ingredient.RequiredAmount);         
+        }
+
+        _playerInventory.SetUIImages();
+        _playerInventory.SetUIText();
+    }
+    public bool Craft(ItemData itemData)
+    {
+        if (CheckForRequiredIngredients(itemData.Recipe))
+        {
+            RemoveIngredientsFromInventory(itemData.Recipe);
+            AddItem(itemData);
+            return true;
+        }
+        return false;
     }
 }

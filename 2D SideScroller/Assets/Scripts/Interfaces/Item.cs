@@ -5,7 +5,7 @@ namespace Items
 {
     public class Item : Interactable
     {
-        public ItemData Data { get; set; }
+        public ItemData Data;
  
         public override void Interact(GameObject player)
         {
