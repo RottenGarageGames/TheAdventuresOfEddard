@@ -17,10 +17,10 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
 
     public PlayerDirection Direction { get; private set; }
 
-    public PlayerStats PlayerStats = new PlayerStats();
+    public PlayerStats Stats = new PlayerStats();
     public PlayerWheel playerWheel;
 
-    public PlayerGUIScript PlayerHealthScript;
+    public PlayerGUIScript GUIScript;
 
     public bool Running;
     public bool IsGrounded { get; private set; }
@@ -31,6 +31,7 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
     {
         RigidBody = GetComponent<Rigidbody2D>();
         PlayerCurrentFlipValue = transform.rotation.y;
+        GUIScript.Slider.maxValue = Stats.MaxHealth;
     }
     
     void Update()
@@ -38,10 +39,10 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
         IsGrounded = Physics2D.OverlapCircle(transform.position, 5.4f, LayerMask.GetMask("Ground"));
 
 
-        //if(Input.GetKeyDown(KeyCode.L))
-        //{
-        //    Damage();
-        //}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Damage(1);
+        }
     }
 
     public void HorizontalMove(float horizontalInput)
@@ -94,16 +95,30 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
         transform.localScale = newScale;
     }
 
-    public void Damage(int damage = 1)
+    public void Damage(int damage)
     {
-        PlayerHealthScript.Damage(PlayerStats.Health);
+        Stats.Health -= damage;
 
-        PlayerStats.Health -= damage;
+        GUIScript.Slider.value = Stats.Health;
 
-        if(PlayerStats.Health <= 0)
+        if (Stats.Health <= 0)
         {
             GameManager.KillPlayer(this);
         }
+    }
+
+    public void Heal(int healPoints)
+    {
+        if (Stats.Health + healPoints > Stats.MaxHealth)
+        {
+            Stats.Health = Stats.MaxHealth;
+        }
+        else
+        {
+            Stats.Health += healPoints;
+        }
+
+        GUIScript.Slider.value = Stats.Health;
     }
 
     public void ShowWheel()
