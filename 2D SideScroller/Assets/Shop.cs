@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Shop : Inventory
+public class Shop : MonoBehaviour
 {
     public List<GameObject> ShopSlots;
     public int ShopGold;
@@ -25,7 +25,6 @@ public class Shop : Inventory
             Debug.Log(randomItem.Name.ToString());
             var cloneItem = randomItem;
             Debug.Log(cloneItem.Name.ToString());
-            Items.Add(cloneItem);
             var slotText = slot.GetComponentInChildren<Text>();
             slot.gameObject.GetComponent<Image>().sprite = cloneItem.Sprite;
             slotText.text = cloneItem.Name.ToString();
@@ -70,7 +69,7 @@ public class Shop : Inventory
         if(ValidTransaction(item.Price))
         {
             //Need to load item
-           player.GetComponent<PlayerWheel>().AddItem(item);
+           player.GetComponent<PlayerInventory>().AddItem(item);
         }
         else
         {

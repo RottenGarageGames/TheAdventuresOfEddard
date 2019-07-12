@@ -16,7 +16,7 @@ public class CalebPlayerController : MonoBehaviour
     public PlayerDirection Direction { get; private set; }
 
     public PlayerStats PlayerStats = new PlayerStats();
-    public PlayerWheel playerWheel;
+    public PlayerInventory PlayerInventory;
 
     public PlayerGUIScript PlayerHealthScript;
 
@@ -105,6 +105,6 @@ public class CalebPlayerController : MonoBehaviour
 
     public void ShowWheel()
     {
-        playerWheel.Show();
+        PlayerInventory.Show();
     }
 }

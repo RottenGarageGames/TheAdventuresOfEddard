@@ -3353,6 +3353,53 @@ PrefabInstance:
       propertyPath: PlayerHealthScript
       value: 
       objectReference: {fileID: 7743339025539012395}
+    - target: {fileID: 5812236886981735088, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892701350334135127, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -297.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892701350334135127, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 169.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892701350334135127, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 325.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892701350334135127, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 164.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196324237335521549, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.5849056
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196324237335521549, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.5849056
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196324237335521549, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.5849056
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037326132048615917, guid: 104880be1e9de2f49a1b38ca8886c932,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Count
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 104880be1e9de2f49a1b38ca8886c932, type: 3}
 --- !u!4 &4889805780214667244 stripped

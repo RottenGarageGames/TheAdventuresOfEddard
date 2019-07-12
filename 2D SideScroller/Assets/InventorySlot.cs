@@ -10,26 +10,30 @@ public class InventorySlot : MonoBehaviour
     public Item Item;
     public int Count;
 
-    public void AddItem(Item item)
+    public bool TryAddItem(Item item)
     {
-        if(Item is null)
+        if (Item is null)
         {
             Item = item;
-            Debug.Log($"{Item.Name} was added to your inventory.");
+
+            Count = 1;
+
+            CountText.text = Count.ToString();
+
+            Image.sprite = item.Sprite;
+
+            return true;
         }
-        else if(Item.GetType() != item.GetType())
-        {
-            Debug.Log($"Could not add item of type {item.GetType().ToString()} to this inventory slot.");
-        }
-        else if(Count == Item.MaxCount)
-        {
-            Debug.Log($"You already have the max number of {Item.Name}'s!");
-        }
-        else
+
+        if(item.GetType() == Item.GetType() && Count < item.MaxCount)
         {
             Count++;
+
             CountText.text = Count.ToString();
-            Debug.Log($"{Item.Name} was added to your inventory.");
+
+            return true;
         }
+
+        return false;
     }
 }

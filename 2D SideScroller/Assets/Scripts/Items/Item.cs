@@ -21,7 +21,7 @@ namespace Items
         {
             if (player.GetComponent<PlayerInventory>() != null)
             {
-                var inventory = player.GetComponent<PlayerWheel>();
+                var inventory = player.GetComponent<PlayerInventory>();
 
                 inventory.AddItem(this);
                 Destroy(gameObject);

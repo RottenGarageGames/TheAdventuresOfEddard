@@ -5,18 +5,20 @@ using UnityInterfaces;
 
 public class Chest : Interactable
 {
-    public bool Unused = true;
+    public bool Open = false;
 
     public override void Interact(GameObject interactingObject)
     {
-        if (Unused)
+        if (!Open)
         {
-            Unused = false;
-            var wheel = interactingObject.GetComponent<PlayerWheel>();
-            //wheel.AddItem(new HealthPotion());
-            Spawner.SpawnRandomItem(new List<GameObject> { Resources.Load("HealthPotion") as GameObject }, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y));
-        }
+            //Open = true;
+            var controller = interactingObject.GetComponent<CalebPlayerController>();
+            var playerInventory = controller.PlayerInventory;
 
-        Destroy(gameObject);
+            var item = Resources.Load("Items/HealthPotion") as GameObject;
+
+            playerInventory.AddItem(item.GetComponent<Item>());
+            Spawner.SpawnRandomItem(new List<GameObject> { item }, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y));
+        }
     }
 }
