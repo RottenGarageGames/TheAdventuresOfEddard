@@ -20,7 +20,7 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
 
     public PlayerWheel playerWheel;
 
-    public PlayerGUIScript PlayerHealthScript;
+    public PlayerGUIScript GUIScript;
 
     public bool Running;
     public bool IsGrounded { get; private set; }
@@ -34,6 +34,7 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
     {
         RigidBody = GetComponent<Rigidbody2D>();
         PlayerCurrentFlipValue = transform.rotation.y;
+        GUIScript.Slider.maxValue = Stats.MaxHealth;
     }
     
     void Update()
@@ -41,10 +42,10 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
         IsGrounded = Physics2D.OverlapCircle(transform.position, 5.4f, LayerMask.GetMask("Ground"));
 
 
-        //if(Input.GetKeyDown(KeyCode.L))
-        //{
-        //    Damage();
-        //}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Damage(1);
+        }
     }
 
     public void HorizontalMove(float horizontalInput)
