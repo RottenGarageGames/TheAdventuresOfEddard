@@ -36,6 +36,10 @@ public class GlobalInputManager : MonoBehaviour
         var jump = GetButtonDown(InputAction.Jump);
         var interact = GetButtonDown(InputAction.Interact);
         var showInventory = GetButtonDown(InputAction.InventoryWheel);
+        var useAbility1 = GetButtonDown(InputAction.Ability1);
+        var useAbility2 = GetButtonDown(InputAction.Ability2);
+        var useAttack1 = GetButtonDown(InputAction.Attack1);
+        var useAttack2 = GetButtonDown(InputAction.Attack2);
 
         if (interact && !_interactStillDown)
         {
@@ -48,7 +52,22 @@ public class GlobalInputManager : MonoBehaviour
                 PlayerController.Interact();
             }
         }
-
+        if(useAbility1)
+        {
+            PlayerController.UseAbility(InputAction.Ability1);
+        }
+        if(useAbility2)
+        {
+            PlayerController.UseAbility(InputAction.Ability2);
+        }
+        if(useAttack1)
+        {
+            PlayerController.UseAbility(InputAction.Attack1);
+        }
+        if(useAttack2)
+        {
+            PlayerController.UseAbility(InputAction.Attack2);
+        }
         if(showInventory && !_inventoryStillDown)
         {
             PlayerController.ShowWheel();

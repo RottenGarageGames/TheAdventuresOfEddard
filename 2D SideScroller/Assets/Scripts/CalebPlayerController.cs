@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityInterfaces;
+using static GlobalInputManager;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CalebPlayerController : MonoBehaviour, IDamagable
@@ -17,13 +18,15 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
 
     public PlayerDirection Direction { get; private set; }
 
-    public PlayerStats PlayerStats = new PlayerStats();
     public PlayerWheel playerWheel;
 
     public PlayerGUIScript PlayerHealthScript;
 
     public bool Running;
     public bool IsGrounded { get; private set; }
+    public int Health { get; set; }
+    public int MaxHealth { get; set; }
+
     public float PlayerCurrentFlipValue;
     public PlayerID ID;
 
@@ -79,7 +82,11 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
            interactable.Interact(gameObject);
         }
     }
-
+    public void UseAbility(InputAction inputAction)
+    {
+        var abilities = gameObject.GetComponent<AbilityList>();
+        abilities.DetermineAbility(inputAction);
+    }
     private void UpdateDirection(PlayerDirection playerDirection)
     {
         if (Direction == playerDirection)
@@ -94,20 +101,36 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
         transform.localScale = newScale;
     }
 
-    public void Damage(int damage = 1)
-    {
-        PlayerHealthScript.Damage(PlayerStats.Health);
+    //public void Damage(int damage = 1)
+    //{
+    //    PlayerHealthScript.Damage(PlayerStats.Health);
 
-        PlayerStats.Health -= damage;
+    //    PlayerStats.Health -= damage;
 
-        if(PlayerStats.Health <= 0)
-        {
-            GameManager.KillPlayer(this);
-        }
-    }
+    //    if(PlayerStats.Health <= 0)
+    //    {
+    //        GameManager.KillPlayer(this);
+    //    }
+    //}
 
     public void ShowWheel()
     {
         playerWheel.Show();
+    }
+    public void TakeDamage(int damage)
+    {
+        PlayerHealthScript.Damage(Health);
+
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            OnTermination();
+        }
+    }
+
+    public void OnTermination()
+    {
+        GameManager.KillPlayer(this);
     }
 }

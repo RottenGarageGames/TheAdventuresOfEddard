@@ -23,6 +23,9 @@ namespace Misc
             var directory = new DirectoryInfo(Application.persistentDataPath);
             var lastSave = directory.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
 
+            //Last save is being loaded if you do a build of the game on your computer
+            //I'm setting it to null to test. Shouldn't be an issue when there are actual save files to load.
+            lastSave = null;
             if (lastSave != null)
             {
                 var json = File.ReadAllText(lastSave.FullName);

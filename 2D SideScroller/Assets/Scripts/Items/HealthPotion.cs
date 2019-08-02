@@ -9,9 +9,9 @@ public class HealthPotion : StackableItem, IConsumable
 
    public bool Consume(GameObject player)
     {
-        var healthComponent = player.GetComponent<CalebPlayerController>();
-        var currentHealth = healthComponent.PlayerStats.Health;
-        var maxHealth = healthComponent.PlayerStats.MaxHealth;
+        var playerController = player.GetComponent<CalebPlayerController>();
+        var currentHealth = playerController.Health;
+        var maxHealth = playerController.MaxHealth;
         if (currentHealth + healAmount <= maxHealth)
         {
             currentHealth += healAmount;

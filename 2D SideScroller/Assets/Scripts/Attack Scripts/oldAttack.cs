@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Attack : MonoBehaviour
+//Old script. saving for reference but need to delete
+public class oldAttack : MonoBehaviour
 {
     public float damage;
     public float coolDownTime;

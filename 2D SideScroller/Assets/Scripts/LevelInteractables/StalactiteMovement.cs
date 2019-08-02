@@ -35,8 +35,7 @@ public class StalactiteMovement : MonoBehaviour
             if(other.gameObject.tag == "Player")
             {
                 var damagableObject = other.gameObject.GetComponent<IDamagable>();
-                damagableObject.Damage(damageAmount);
-
+                damagableObject.TakeDamage(damageAmount);
             }
             AudioManager.instance.Play("CaveSpikes");
             Destroy(gameObject);
