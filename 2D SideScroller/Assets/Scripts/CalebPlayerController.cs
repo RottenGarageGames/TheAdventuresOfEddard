@@ -34,7 +34,7 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
     {
         RigidBody = GetComponent<Rigidbody2D>();
         PlayerCurrentFlipValue = transform.rotation.y;
-        GUIScript.Slider.maxValue = Stats.MaxHealth;
+        GUIScript.Slider.maxValue = MaxHealth;
     }
     
     void Update()
@@ -44,7 +44,7 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Damage(1);
+            TakeDamage(1);
         }
     }
 
@@ -120,9 +120,8 @@ public class CalebPlayerController : MonoBehaviour, IDamagable
     }
     public void TakeDamage(int damage)
     {
-        PlayerHealthScript.Damage(Health);
-
         Health -= damage;
+        GUIScript.Slider.value = Health;
 
         if (Health <= 0)
         {
