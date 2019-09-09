@@ -68,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
             inRange = true;
             isClosestDistanceToPlayer = false;
             this.gameObject.SendMessage("TogglePlayerInRange");
-            this.gameObject.GetComponent<EnemyStats>().collidingWithPlayer = true;
+            //this.gameObject.GetComponent<EnemyStats>().collidingWithPlayer = true;
             SendMessage("AttackLoopSetPlayerInRange", newPlayer.gameObject);
             _animator.SetBool("inRange", true);
         }
@@ -82,7 +82,7 @@ public class EnemyMovement : MonoBehaviour
             this.gameObject.SendMessage("TogglePlayerInRange");
             SendMessage("AttackLoopPlayerOutOfRange", newPlayer.gameObject);
             _animator.SetBool("inRange", false);
-            this.gameObject.GetComponent<EnemyStats>().collidingWithPlayer = false;
+            //this.gameObject.GetComponent<EnemyStats>().collidingWithPlayer = false;
 
         }
     }

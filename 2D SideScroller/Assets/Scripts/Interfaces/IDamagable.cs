@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable<T>
+public interface IDamagable
 {
-    T health { get; set; }
-    void TakeDamage(T damageAmount);
+    int MaxHealth { get; set; }
+    int Health { get; set; }
+    void TakeDamage(int damageAmount);
+    void OnTermination();
 }

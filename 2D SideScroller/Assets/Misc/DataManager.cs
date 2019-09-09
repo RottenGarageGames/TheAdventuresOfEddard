@@ -12,13 +12,21 @@ namespace Misc
     {
         public static Dictionary<InputAction, InputButton> ControllerBindings { get; set; } = null;
         public static Dictionary<InputAction, KeyCode> KeyboardBindings { get; set; } = null;
+        public static BankData PlayerOneBankData { get; set; } = null;
+        public static BankData PlayerTwoBankData { get; set; } = null;
+        public static BankData PlayerThreeBankData { get; set; } = null;
+        public static BankData PlayerFourBankData { get; set; } = null;
+
 
         public static void Load()
         {
             var directory = new DirectoryInfo(Application.persistentDataPath);
             var lastSave = directory.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
 
-            if (lastSave is null)
+            //Last save is being loaded if you do a build of the game on your computer
+            //I'm setting it to null to test. Shouldn't be an issue when there are actual save files to load.
+            lastSave = null;
+            if (lastSave != null)
             {
                 var json = File.ReadAllText(lastSave.FullName);
 
@@ -41,7 +49,12 @@ namespace Misc
 
             string[] data =
             {
-                JsonConvert.SerializeObject(KeyboardBindings)
+                JsonConvert.SerializeObject(KeyboardBindings),
+                JsonConvert.SerializeObject(ControllerBindings),
+                JsonConvert.SerializeObject(PlayerOneBankData),
+                JsonConvert.SerializeObject(PlayerTwoBankData),
+                JsonConvert.SerializeObject(PlayerThreeBankData),
+                JsonConvert.SerializeObject(PlayerFourBankData)
             };
 
             File.WriteAllLines(filePath, data);
@@ -70,6 +83,9 @@ namespace Misc
             KeyboardBindings.Add(InputAction.Attack1, KeyCode.Mouse0);
             KeyboardBindings.Add(InputAction.Ability2, KeyCode.Q);
             KeyboardBindings.Add(InputAction.Attack2, KeyCode.Mouse1);
+            KeyboardBindings.Add(InputAction.Left, KeyCode.A);
+            KeyboardBindings.Add(InputAction.Right, KeyCode.D);
+            KeyboardBindings.Add(InputAction.Crouch, KeyCode.S);
         }
     }
 }
@@ -82,6 +98,6 @@ public class GameData
     public GameData(Dictionary<InputAction, InputButton> controllerBindings, Dictionary<InputAction, KeyCode> keyboardBindings)
     {
         ControllerBindings = controllerBindings;
-        keyboardBindings = keyboardBindings;
+        KeyboardBindings = keyboardBindings;
     }
 }

@@ -6,31 +6,18 @@ using Items;
 
 public class StackableItem : Item, IStackable
 {
-    [SerializeField]
-    private int _StackSize;
-    public int StackSize { get; set; }
+    public ItemData data;
 
-    [SerializeField]
-    private int _MaxStackSize;
-    public int MaxStackSize { get; set; }
-
-    [SerializeField]
-    private int _AddSize;
-    public int AddSize { get; set; }
-
-    void Awake()
+    private void Awake()
     {
-        StackSize = _StackSize;
-        MaxStackSize = _MaxStackSize;
-        AddSize = _AddSize;
+        Data = data;
     }
-
     public void DecreaseCount(int amount)
     {
-        StackSize -= amount;
+        Data.StackSize -= amount;
     }
     public void IncreaseCount(int amount)
     {
-        StackSize += amount;
+        Data.StackSize += amount;
     }
 }

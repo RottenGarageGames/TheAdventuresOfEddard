@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Field.unity
-    guid: 650aba1fc15d74f41b01b619f44d215d
+    path: Assets/Scenes/MainMenu.unity
+    guid: f65064dc46966644abc9ca1a77a10310
   - enabled: 1
-    path: Assets/Scenes/SmallHomeIndoors.unity
-    guid: 9f7a415608fefc24ba5450bc21c3f6d9
+    path: Assets/Scenes/MikeTest.unity
+    guid: 00d88d2e4f014424eb095c0183f131d4
   m_configObjects: {}

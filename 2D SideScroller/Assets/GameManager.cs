@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : ScriptableObject
 {
     public static void KillPlayer(CalebPlayerController player)
     {
-        Destroy(player.gameObject);
+        //player.Heal(1000000);
 
         //do ui things
     }

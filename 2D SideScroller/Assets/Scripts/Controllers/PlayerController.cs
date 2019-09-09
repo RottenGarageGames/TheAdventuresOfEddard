@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity;
+using static CalebPlayerController;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _myRB;
     private Transform _playerTransform;
     public bool isLocal;
-
+    public PlayerID playerID;
     public float speed = 50;
 
     //Input Variables

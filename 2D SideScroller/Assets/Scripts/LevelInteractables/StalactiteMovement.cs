@@ -29,13 +29,13 @@ public class StalactiteMovement : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-
         //other.SendMessage("TakeDamage", damageAmount);
         if (other.gameObject.tag != startCollider)
         {
             if(other.gameObject.tag == "Player")
             {
-                other.gameObject.SendMessage("TakeDamage", damageAmount);
+                var damagableObject = other.gameObject.GetComponent<IDamagable>();
+                damagableObject.TakeDamage(damageAmount);
             }
             AudioManager.instance.Play("CaveSpikes");
             Destroy(gameObject);

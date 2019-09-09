@@ -5,9 +5,11 @@ using UnityInterfaces;
 
 public class MaxShieldPotion : StackableItem, IConsumable
 {
-    public void Consume(GameObject player)
+    public bool Consume(GameObject player)
     {
         var healthComponent = player.GetComponent<PlayerHealth>();
         healthComponent.MaxShield();
+        Destroy(gameObject);
+        return true;
     }
 }

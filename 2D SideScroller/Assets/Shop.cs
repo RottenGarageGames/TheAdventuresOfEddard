@@ -9,32 +9,31 @@ using UnityInterfaces;
 public class Shop : Inventory
 {
     public List<GameObject> ShopSlots;
-    public List<Item> items;
     public int ShopGold;
     public Text ShopGoldText;
+
+    public ItemList itemDatabase;
 
     public GameObject player;
 
     private void Start()
     {
-        var listOfObjects = Resources.LoadAll("Items/Potions/", typeof(GameObject));
-
-        var length = listOfObjects.Length;
-        items = new List<Item>();
-
+        var length = itemDatabase.itemDatas.Count;
 
         Debug.Log(length);
 
         foreach(var slot in ShopSlots)
         {
-            var testItem = listOfObjects[Random.Range(0, length)] as GameObject;
-            var itemInfo = testItem.GetComponent<Item>();
-            items.Add(itemInfo);
+            var randomItem = itemDatabase.itemDatas[Random.Range(0, length)];
+            Debug.Log(randomItem.Name.ToString());
+            var cloneItem = new ItemData(randomItem);
+            Debug.Log(cloneItem.Name.ToString());
+            Items.Add(cloneItem);
             var slotImageId = slot.GetComponentInChildren<ImageID>();
             var slotText = slot.GetComponentInChildren<Text>();
-            slot.gameObject.GetComponent<Image>().sprite = testItem.GetComponent<SpriteRenderer>().sprite;
-            slotImageId.itemID = itemInfo.OnStartItemID;
-            slotText.text = itemInfo.OnStartItemName.ToString();
+            slot.gameObject.GetComponent<Image>().sprite = cloneItem.Sprite;
+            slotImageId.itemData = cloneItem;
+            slotText.text = cloneItem.Name.ToString();
 
 
             var priceText = slot.GetComponentsInChildren<Text>();
@@ -43,7 +42,7 @@ public class Shop : Inventory
             {
                 if(textComponent.name == "Price")
                 {
-                    textComponent.text = "Price: " + itemInfo.OnStartBasePrice.ToString();
+                    textComponent.text = "Price: " + cloneItem.Price.ToString();
                 }
             }
         }
@@ -59,23 +58,29 @@ public class Shop : Inventory
             player = collision.gameObject;
         }
     }
-    public bool ValidTransaction(int itemCost)
+    public bool ValidTransaction(ItemData item)
     {
-        if(player.GetComponent<Currency>().stat >= itemCost)
+        if(player.GetComponent<Currency>().stat >= item.Price)
         {
-            return true;
+            if(player.GetComponent<PlayerInventory>().ItemCanBeAdded(item))
+            {
+                player.GetComponent<Currency>().DecreaseStat(item.Price);
+                return true;
+            }
+        }
+
+        return false;
+    }
+    public void ProcessTransaction(ItemData item)
+    {
+        if(ValidTransaction(item))
+        {
+            //Need to load item
+           player.GetComponent<PlayerInventory>().AddItem(item);
         }
         else
         {
-            return false;
-        }
-    }
-    public void ProcessTransaction(Item item)
-    {
-        if(ValidTransaction(item.basePrice))
-        {
-            //Need to load item
-            player.GetComponent<PlayerInventory>().AddItem(item);
+            Debug.Log("Not enough funds or the user inventory is full");
         }
     }
     public void IncreaseShopGold(int amount)

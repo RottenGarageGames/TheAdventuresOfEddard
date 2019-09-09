@@ -7,9 +7,28 @@ public class HealthPotion : StackableItem, IConsumable
 {
     public int healAmount;
 
-   public void Consume(GameObject player)
+   public bool Consume(GameObject player)
     {
-        var healthComponent = player.GetComponent<PlayerHealth>();
-        healthComponent.RestoreHealth(healAmount);
+        var playerController = player.GetComponent<CalebPlayerController>();
+        var currentHealth = playerController.Health;
+        var maxHealth = playerController.MaxHealth;
+        if (currentHealth + healAmount <= maxHealth)
+        {
+            currentHealth += healAmount;
+            Destroy(gameObject);
+            return true;
+        }
+        else if(currentHealth == maxHealth)
+        {
+            Debug.Log("health is full");
+            return false;
+        }
+        else
+        {
+            currentHealth = maxHealth;
+            Destroy(gameObject);
+            return true;
+        }
+        
     }
 }

@@ -14,7 +14,7 @@ public class Stat : MonoBehaviour
     }
     public bool DecreaseStat(int amount)
     {
-        if (stat - amount > 0)
+        if (stat - amount >= 0)
         {
             stat -= amount;
             return true;

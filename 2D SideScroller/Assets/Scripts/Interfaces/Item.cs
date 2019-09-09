@@ -1,57 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityInterfaces;
-using System;
-using UnityEngine.Events;
 
 namespace Items
 {
-    public class Item : MonoBehaviour, IInventoryItem, IInteractable
+    public class Item : Interactable
     {
-        private CircleCollider2D _circleCollider2D;
-        public UnityEvent equipItem;
-        
-
-        [SerializeField]
-        public String OnStartItemName;
-        public String itemName { get; set; }
-
-        [SerializeField]
-        public String PrefabPath;
-        public String prefabPath { get; set; }
-
-        [SerializeField]
-        public int OnStartBasePrice;
-        public int basePrice { get; set; }
-
-        [SerializeField]
-        public int OnStartItemID;
-        public int itemID { get; set; }
-
-        [SerializeField]
-        public float OnStartInteractRadius;
-        public float interactRadius { get; set; }
-
-        [SerializeField]
-        public Sprite sprite { get; set; }
-
-        private void Start()
+        public ItemData Data;
+ 
+        public override void Interact(GameObject player)
         {
-            itemName = OnStartItemName;
-            itemID = OnStartItemID;
-            interactRadius = OnStartInteractRadius;
-            _circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
-            _circleCollider2D.radius = OnStartInteractRadius;
-            sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-        }
-        public Item()
-        {
-            
-        }
-        public void Interact(GameObject gameObject)
-        {
-            
+            if (player.GetComponent<PlayerInventory>() != null)
+            {
+                var inventory = player.GetComponent<PlayerInventory>();
+
+                if (inventory.ItemCanBeAdded(Data))
+                {
+                    inventory.AddItem(Data);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Inventory is full. Item can't be added");
+                }
+            }
         }
     }
 }

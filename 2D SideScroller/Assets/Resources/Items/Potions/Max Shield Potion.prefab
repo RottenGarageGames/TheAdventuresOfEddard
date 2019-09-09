@@ -109,16 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb398cfecfab2064aa9e74f1a529685e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipItem:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnStartItemName: Max Shield Potion
-  PrefabPath: Items/Potions/Max Shield Potion.prefab
-  OnStartBasePrice: 150
-  OnStartItemID: 3
-  OnStartInteractRadius: 5
-  _StackSize: 3
-  _MaxStackSize: 5
-  _AddSize: 3
+  data: {fileID: 11400000, guid: 5d830eceebc37a5439f680cc1aa32e6e, type: 2}

@@ -10,7 +10,7 @@ using Items;
 
 public class Inventory : MonoBehaviour
 {
-    public List<Item> Items;
+    public List<ItemData> Items;
 
     public Inventory()
     {

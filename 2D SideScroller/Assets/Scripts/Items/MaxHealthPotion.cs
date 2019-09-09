@@ -6,9 +6,15 @@ using UnityInterfaces;
 public class MaxHealthPotion : StackableItem, IConsumable
 {
 
-    public void Consume(GameObject player)
+    public bool Consume(GameObject player)
     {
-        var healthComponent = player.GetComponent<PlayerHealth>();
-        healthComponent.MaxOutHealth();
+        var playerController = player.GetComponent<CalebPlayerController>();
+        if (playerController.Health < playerController.MaxHealth)
+        {
+            playerController.Health = playerController.MaxHealth;
+            Destroy(gameObject);
+            return true;
+        }
+        return false;
     }
 }
