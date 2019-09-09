@@ -56,23 +56,23 @@ ScriptedImporter:
     21200028: Devil_GO/Devil_GO/Layer 13/SpriteRenderer
     21200030: Devil_GO/Devil_GO/Layer 14/SpriteRenderer
     21200032: Devil_GO/Devil_GO/Layer 16/SpriteRenderer
-    21300034: 3476acd80d7664a17875bf09aa642ad5
-    21300036: b845fcd3e00fb4f9b8aa8fbbb978a1ca
-    21300038: af1a2e172230c452ea23e6c50ecb8f65
-    21300040: 8c7e9ee7960c2413cab390f83010aa30
-    21300042: 5d3dad6bf72974e549b6c3dfbeac11e2
-    21300044: 1df8faf36d217403d8ec1080f0bac2fb
-    21300046: 3da15b38f337b4c0585c114ae169ec3b
-    21300048: 676885a7969fc4a2da85733ecdae4e79
-    21300050: df93a0167ed5d49fcbd39cd83933b559
-    21300052: 9fa3acf44117c4419ab9bbf251e73a7e
-    21300054: 65442c8c1f6cb4dfab2cd61351e18d13
-    21300056: 58400c844b6fa40c186361705957548a
-    21300058: 07d8bd7d5bfb344eaa704109762b0a81
-    21300060: a82939fd788214ecf871b2d823571723
-    21300062: 3ca1e4baa4f054da5a55c5c34939fd18
-    21300064: cf67633c0ed9a4e6d90d0d91635f92ed
-    21300066: f2f383b023eff4ce489a9db1c915b90b
+    21300000: Layer 1
+    21300002: From selection
+    21300004: Layer 5
+    21300006: Layer 4
+    21300008: Layer 6
+    21300010: Layer 2
+    21300012: Layer 7
+    21300014: Inserted Image
+    21300016: Layer 9
+    21300018: Layer 10
+    21300020: Layer 8
+    21300022: Layer 12
+    21300024: Layer 13
+    21300026: Inserted Image_1
+    21300028: Layer 16
+    21300030: Inserted Image_2
+    21300032: Layer 14
     100100000: Devil_GO
   externalObjects: {}
   userData: 
@@ -652,6 +652,5 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
   boneGOs: []
+  firstCreate: 0
   generateGOHierarchy: 0
-  textureAssetName: Devil
-  prefabAssetName: Devil_GO
